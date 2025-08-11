@@ -86,11 +86,11 @@ export async function withMultichainAccountsDesignEnabled(
         await loginWithBalanceValidation(driver);
       }
       const homePage = new HomePage(driver);
-      await homePage.checkPageIsLoaded();
+      await homePage.check_pageIsLoaded();
       const headerNavbar = new HeaderNavbar(driver);
       await headerNavbar.openAccountMenu();
       const accountListPage = new AccountListPage(driver);
-      await accountListPage.checkPageIsLoaded();
+      await accountListPage.check_pageIsLoaded();
       await test(driver);
     },
   );

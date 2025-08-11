@@ -65,9 +65,6 @@ describe('Import Wallet Events', () => {
     await waitForElementByText('Your wallet is ready!');
     await clickElementById('onboarding-complete-done');
 
-    await waitForElementByText('Scan QR code and download the app');
-    await clickElementById('download-app-continue');
-
     await waitForElementById('pin-extension-next');
     await clickElementById('pin-extension-next');
 

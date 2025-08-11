@@ -73,16 +73,16 @@ networkConfigs.forEach((config) => {
           );
 
           // Verify token is displayed
-          await tokenList.checkTokenName(config.tokenSymbol);
+          await tokenList.check_tokenName(config.tokenSymbol);
 
           // Open the test dapp and verify balance
           const testDapp = new TestDapp(driver);
           await testDapp.openTestDappPage();
-          await testDapp.checkPageIsLoaded();
+          await testDapp.check_pageIsLoaded();
           await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
 
           // Verify dapp can access the account
-          await testDapp.checkGetAccountsResult(WALLET_ADDRESS.toLowerCase());
+          await testDapp.check_getAccountsResult(WALLET_ADDRESS.toLowerCase());
 
           // Test various Dapp functionalities
           await performDappActionAndVerify(

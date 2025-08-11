@@ -33,7 +33,7 @@ describe('Snap Account Signatures and Disconnects', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         const headerNavbar = new HeaderNavbar(driver);
-        await headerNavbar.checkAccountLabel('SSK Account');
+        await headerNavbar.check_accountLabel('SSK Account');
 
         // Open the Test Dapp and connect
         const testDapp = new TestDapp(driver);

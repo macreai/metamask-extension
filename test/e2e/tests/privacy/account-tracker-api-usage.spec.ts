@@ -144,7 +144,7 @@ describe('Account Tracker API Usage', function () {
 
         await loginWithoutBalanceValidation(driver);
         const homepage = new HomePage(driver);
-        await homepage.checkPageIsLoaded();
+        await homepage.check_pageIsLoaded();
         await driver.delay(veryLargeDelayMs);
 
         allInfuraJsonRpcRequests =
@@ -180,7 +180,7 @@ describe('Account Tracker API Usage', function () {
       async ({ driver, mockedEndpoint }) => {
         await loginWithoutBalanceValidation(driver);
         const homepage = new HomePage(driver);
-        await homepage.checkPageIsLoaded();
+        await homepage.check_pageIsLoaded();
         await driver.delay(veryLargeDelayMs);
         const initialInfuraJsonRpcRequests =
           await getAllInfuraJsonRpcRequests(mockedEndpoint);

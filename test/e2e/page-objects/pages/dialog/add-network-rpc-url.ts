@@ -26,7 +26,9 @@ class AddNetworkRpcUrlModal {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.addRpcUrlInput,
@@ -78,7 +80,9 @@ class AddNetworkRpcUrlModal {
    *
    * @param shouldBeEnabled - Whether the add RPC URL button should be enabled. Defaults to true.
    */
-  async checkAddRpcUrlButtonIsEnabled(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_addRpcUrlButtonIsEnabled(
     shouldBeEnabled: boolean = true,
   ): Promise<void> {
     console.log(
@@ -90,7 +94,9 @@ class AddNetworkRpcUrlModal {
     assert.equal(await addRpcUrlButton.isEnabled(), shouldBeEnabled);
   }
 
-  async checkErrorMessageInvalidUrlIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_errorMessageInvalidUrlIsDisplayed(): Promise<void> {
     console.log('Check that error message invalid URL is displayed');
     await this.driver.waitForSelector(this.errorMessageInvalidUrl);
   }

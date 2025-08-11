@@ -68,12 +68,12 @@ describe('Preinstalled example Snap', function () {
         await preInstalledExample.clickToggleButtonOn();
         await preInstalledExample.selectRadioOption('Option 2');
         await preInstalledExample.selectDropdownOption('Option 2');
-        await preInstalledExample.checkIsToggleOn();
+        await preInstalledExample.check_isToggleOn();
         assert.equal(
-          await preInstalledExample.checkSelectedRadioOption('Option 2'),
+          await preInstalledExample.check_selectedRadioOption('Option 2'),
           true,
         );
-        await preInstalledExample.checkSelectedDropdownOption('Option 2');
+        await preInstalledExample.check_selectedDropdownOption('Option 2');
         await driver.clickElement(
           '.settings-page__header__title-container__close-button',
         );
@@ -85,7 +85,7 @@ describe('Preinstalled example Snap', function () {
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestSnaps);
         await testSnaps.clickButton('getSettingsStateButton');
         const jsonTextValidation = '"setting1": true';
-        await testSnaps.checkMessageResultSpan(
+        await testSnaps.check_messageResultSpan(
           'rpcResultSpan',
           jsonTextValidation,
         );
@@ -255,5 +255,5 @@ async function navigateToPreInstalledExample(driver: Driver) {
   await headerNavbar.openSettingsPage();
 
   await settingsPage.goToPreInstalledExample();
-  await preInstalledExample.checkPageIsLoaded();
+  await preInstalledExample.check_pageIsLoaded();
 }

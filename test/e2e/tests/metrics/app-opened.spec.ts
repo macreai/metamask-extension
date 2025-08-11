@@ -91,7 +91,7 @@ describe('App Opened metric', function () {
         // Go to dapp which will trigger MetaMask to open
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         // Wait for events to be tracked
         const events = await getEventPayloads(driver, mockedEndpoints);

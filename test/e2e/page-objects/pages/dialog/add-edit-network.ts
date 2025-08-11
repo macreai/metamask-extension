@@ -60,7 +60,9 @@ class AddEditNetworkModal {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.networkNameInputField,
@@ -169,7 +171,9 @@ class AddEditNetworkModal {
    *
    * @param shouldBeEnabled - Whether the chain id input field should be enabled. Defaults to true.
    */
-  async checkChainIdInputFieldIsEnabled(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_chainIdInputFieldIsEnabled(
     shouldBeEnabled: boolean = true,
   ): Promise<void> {
     console.log(
@@ -186,7 +190,9 @@ class AddEditNetworkModal {
    *
    * @param errorMessage - The error message to check.
    */
-  async checkChainIdInputErrorMessageIsDisplayed(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_chainIdInputErrorMessageIsDisplayed(
     errorMessage: string,
   ): Promise<void> {
     console.log(
@@ -198,7 +204,9 @@ class AddEditNetworkModal {
     });
   }
 
-  async checkCurrencySymbolWarningIsDisplayed(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_currencySymbolWarningIsDisplayed(
     warningMessage: string,
   ): Promise<void> {
     console.log(
@@ -216,7 +224,9 @@ class AddEditNetworkModal {
    * @param rpcName - The name of the RPC to check.
    * @param shouldBeDisplayed - Whether the RPC should be displayed or not, default is true.
    */
-  async checkRpcIsDisplayed(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_rpcIsDisplayed(
     rpcName: string,
     shouldBeDisplayed: boolean = true,
   ): Promise<void> {
@@ -239,7 +249,9 @@ class AddEditNetworkModal {
     }
   }
 
-  async checkSaveButtonIsEnabled(): Promise<boolean> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_saveButtonIsEnabled(): Promise<boolean> {
     console.log('Check if save button is enabled on add/edit network modal');
     try {
       await this.driver.findClickableElement(this.editModalSaveButton, {

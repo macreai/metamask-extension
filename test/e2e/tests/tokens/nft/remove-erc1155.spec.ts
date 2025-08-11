@@ -50,12 +50,12 @@ describe('Remove ERC1155 NFT', function () {
         await nftListPage.clickNFTIconOnActivityList();
 
         const nftDetailsPage = new NFTDetailsPage(driver);
-        await nftDetailsPage.checkPageIsLoaded();
+        await nftDetailsPage.check_pageIsLoaded();
         await nftDetailsPage.removeNFT();
 
         // Check the success remove NFT toaster is displayed and the NFT is removed from the NFT tab
-        await nftListPage.checkSuccessRemoveNftMessageIsDisplayed();
-        await nftListPage.checkNoNftInfoIsDisplayed();
+        await nftListPage.check_successRemoveNftMessageIsDisplayed();
+        await nftListPage.check_noNftInfoIsDisplayed();
       },
     );
   });
@@ -82,35 +82,37 @@ describe('Remove ERC1155 NFT', function () {
         // navigate to security & privacy settings and toggle on NFT autodetection
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.goToPrivacySettings();
 
         const privacySettings = new PrivacySettings(driver);
-        await privacySettings.checkPageIsLoaded();
+        await privacySettings.check_pageIsLoaded();
         await privacySettings.toggleAutodetectNft();
         await settingsPage.closeSettingsPage();
 
         // check that nft is displayed
         const homepage = new Homepage(driver);
-        await homepage.checkPageIsLoaded();
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_pageIsLoaded();
+        await homepage.check_expectedBalanceIsDisplayed();
         await homepage.goToNftTab();
         const nftListPage = new NftListPage(driver);
         await driver.clickElement('[data-testid="sort-by-networks"]');
         await driver.clickElement('[data-testid="modal-header-close-button"]');
-        await nftListPage.checkNftNameIsDisplayed('ENS: Ethereum Name Service');
-        await nftListPage.checkNftImageIsDisplayed();
+        await nftListPage.check_nftNameIsDisplayed(
+          'ENS: Ethereum Name Service',
+        );
+        await nftListPage.check_nftImageIsDisplayed();
         await nftListPage.clickNFTIconOnActivityList();
 
         const nftDetailsPage = new NFTDetailsPage(driver);
-        await nftDetailsPage.checkPageIsLoaded();
+        await nftDetailsPage.check_pageIsLoaded();
 
         await nftDetailsPage.removeNFT();
         await driver.delay(5000);
 
         // Remove NFT
-        await nftListPage.checkSuccessRemoveNftMessageIsDisplayed();
-        await nftListPage.checkNoNftInfoIsDisplayed();
+        await nftListPage.check_successRemoveNftMessageIsDisplayed();
+        await nftListPage.check_noNftInfoIsDisplayed();
         await driver.delay(5000);
       },
     );

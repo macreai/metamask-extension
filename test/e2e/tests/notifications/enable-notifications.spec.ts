@@ -94,13 +94,13 @@ describe('Enable Notifications - Without Accounts Syncing', function () {
           // Assert Notification Account Settings have persisted
           // The second account was switched off from the initial run
           const [{ a: account1 }, { a: account2 }] = notificationsMockAccounts;
-          await notificationsSettingsPage.checkNotificationState({
+          await notificationsSettingsPage.check_notificationState({
             address: account1,
             toggleType: 'address',
             expectedState: 'enabled',
           });
 
-          await notificationsSettingsPage.checkNotificationState({
+          await notificationsSettingsPage.check_notificationState({
             address: account2,
             toggleType: 'address',
             expectedState: 'disabled',
@@ -112,7 +112,7 @@ describe('Enable Notifications - Without Accounts Syncing', function () {
       await completeOnboardFlowIdentity(driver);
 
       const headerNavbar = new HeaderNavbar(driver);
-      await headerNavbar.checkPageIsLoaded();
+      await headerNavbar.check_pageIsLoaded();
       await headerNavbar.openAccountMenu();
 
       const accountListPage = new AccountListPage(driver);

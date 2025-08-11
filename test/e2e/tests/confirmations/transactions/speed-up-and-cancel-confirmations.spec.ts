@@ -55,16 +55,16 @@ describe('Speed Up and Cancel Transaction Tests', function () {
           await homePage.goToActivityList();
 
           const activityListPage = new ActivityListPage(driver);
-          await activityListPage.checkCompletedTxNumberDisplayedInActivity(1);
+          await activityListPage.check_completedTxNumberDisplayedInActivity(1);
 
-          await activityListPage.clickTransactionListItem();
-          await activityListPage.clickSpeedUpTransaction();
-          await activityListPage.clickConfirmTransactionReplacement();
+          await activityListPage.click_transactionListItem();
+          await activityListPage.click_speedUpTransaction();
+          await activityListPage.click_confirmTransactionReplacement();
           await driver.delay(3000); // Delay needed to ensure the transaction is updated before mining
           (await localNodes?.[0]?.mineBlock()) ??
             console.error('localNodes is undefined or empty');
 
-          await activityListPage.checkWaitForTransactionStatus('confirmed');
+          await activityListPage.check_waitForTransactionStatus('confirmed');
         },
       );
     });
@@ -107,14 +107,14 @@ describe('Speed Up and Cancel Transaction Tests', function () {
           await homePage.goToActivityList();
 
           const activityListPage = new ActivityListPage(driver);
-          await activityListPage.checkCompletedTxNumberDisplayedInActivity(1);
+          await activityListPage.check_completedTxNumberDisplayedInActivity(1);
 
-          await activityListPage.clickCancelTransaction();
-          await activityListPage.clickConfirmTransactionReplacement();
+          await activityListPage.click_cancelTransaction();
+          await activityListPage.click_confirmTransactionReplacement();
           await driver.delay(3000); // Delay needed to ensure the transaction updated before mining
           (await localNodes?.[0]?.mineBlock()) ??
             console.error('localNodes is undefined or empty');
-          await activityListPage.checkWaitForTransactionStatus('cancelled');
+          await activityListPage.check_waitForTransactionStatus('cancelled');
         },
       );
     });

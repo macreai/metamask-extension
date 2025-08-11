@@ -8,7 +8,6 @@ import {
   getAccountTypeForKeyring,
   getHardwareWalletType,
   getHDEntropyIndex,
-  getIsSocialLoginFlow,
   getUseBlockie,
   isSolanaAccount,
 } from '../../../selectors';
@@ -78,7 +77,6 @@ export const BaseAccountDetails = ({
   const chainId = useSelector(getCurrentChainId);
   const hdEntropyIndex = useSelector(getHDEntropyIndex);
   const deviceName = useSelector(getHardwareWalletType);
-  const socialLoginFlow = useSelector(getIsSocialLoginFlow);
 
   const {
     metadata: { name },
@@ -112,8 +110,7 @@ export const BaseAccountDetails = ({
 
   const isRemovable =
     account.metadata.keyring.type !== KeyringType.hdKeyTree &&
-    !isSolanaAccount(account) &&
-    !socialLoginFlow; // social login accounts are not removable
+    !isSolanaAccount(account);
 
   const [showAccountRemoveModal, setShowAccountRemoveModal] = useState(false);
 

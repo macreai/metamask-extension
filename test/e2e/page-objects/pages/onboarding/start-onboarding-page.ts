@@ -53,7 +53,9 @@ class StartOnboardingPage {
     this.driver = driver;
   }
 
-  async checkBannerPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_bannerPageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.welcomeMessage,
@@ -83,7 +85,9 @@ class StartOnboardingPage {
     );
   }
 
-  async checkLoginPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_loginPageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.logInMessage,

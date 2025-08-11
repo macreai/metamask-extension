@@ -85,7 +85,9 @@ class OnboardingPrivacySettingsPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.generalSettings,
@@ -163,7 +165,7 @@ class OnboardingPrivacySettingsPage {
 
   async navigateToGeneralSettings(): Promise<void> {
     console.log('Navigate to general settings');
-    await this.checkPageIsLoaded();
+    await this.check_pageIsLoaded();
     await this.driver.clickElement(this.generalSettings);
     await this.driver.waitForSelector(this.generalSettingsMessage);
   }
@@ -184,7 +186,7 @@ class OnboardingPrivacySettingsPage {
    */
   async toggleAssetsSettings(): Promise<void> {
     console.log('Toggle advanced assets settings in privacy settings');
-    await this.checkPageIsLoaded();
+    await this.check_pageIsLoaded();
     await this.driver.clickElement(this.assetsSettings);
     await this.driver.waitForSelector(this.assetsSettingsMessage);
     await Promise.all(

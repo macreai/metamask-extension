@@ -29,15 +29,21 @@ class SetApprovalForAllTransactionConfirmation extends TransactionConfirmation {
     };
   }
 
-  async checkSetApprovalForAllTitle() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_setApprovalForAllTitle() {
     await this.driver.waitForSelector(this.setApprovalForAllTitleElement);
   }
 
-  async checkSetApprovalForAllSubHeading() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_setApprovalForAllSubHeading() {
     await this.driver.waitForSelector(this.setApprovalForAllSubHeadingElement);
   }
 
-  async checkRevokeSetApprovalForAllTitle() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_revokeSetApprovalForAllTitle() {
     await this.driver.waitForSelector(this.revokeSetApprovalForAllTitleElement);
   }
 }

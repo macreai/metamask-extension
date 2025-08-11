@@ -60,27 +60,27 @@ describe('App Installed Events', function () {
 
         if (process.env.SELENIUM_BROWSER === Browser.FIREFOX) {
           const onboardingMetricsPage = new OnboardingMetricsPage(driver);
-          await onboardingMetricsPage.checkPageIsLoaded();
+          await onboardingMetricsPage.check_pageIsLoaded();
           await onboardingMetricsPage.clickIAgreeButton();
         }
 
         const startOnboardingPage = new StartOnboardingPage(driver);
-        await startOnboardingPage.checkBannerPageIsLoaded();
+        await startOnboardingPage.check_bannerPageIsLoaded();
         await startOnboardingPage.agreeToTermsOfUse();
-        await startOnboardingPage.checkLoginPageIsLoaded();
+        await startOnboardingPage.check_loginPageIsLoaded();
         await startOnboardingPage.createWalletWithSrp();
 
         const onboardingPasswordPage = new OnboardingPasswordPage(driver);
-        await onboardingPasswordPage.checkPageIsLoaded();
+        await onboardingPasswordPage.check_pageIsLoaded();
         await onboardingPasswordPage.createWalletPassword(WALLET_PASSWORD);
 
         const secureWalletPage = new SecureWalletPage(driver);
-        await secureWalletPage.checkPageIsLoaded();
+        await secureWalletPage.check_pageIsLoaded();
         await secureWalletPage.revealAndConfirmSRP();
 
         if (process.env.SELENIUM_BROWSER !== Browser.FIREFOX) {
           const onboardingMetricsPage = new OnboardingMetricsPage(driver);
-          await onboardingMetricsPage.checkPageIsLoaded();
+          await onboardingMetricsPage.check_pageIsLoaded();
           await onboardingMetricsPage.clickIAgreeButton();
         }
 
@@ -116,27 +116,27 @@ describe('App Installed Events', function () {
 
         if (process.env.SELENIUM_BROWSER === Browser.FIREFOX) {
           const onboardingMetricsPage = new OnboardingMetricsPage(driver);
-          await onboardingMetricsPage.checkPageIsLoaded();
+          await onboardingMetricsPage.check_pageIsLoaded();
           await onboardingMetricsPage.clickNoThanksButton();
         }
 
         const startOnboardingPage = new StartOnboardingPage(driver);
-        await startOnboardingPage.checkBannerPageIsLoaded();
+        await startOnboardingPage.check_bannerPageIsLoaded();
         await startOnboardingPage.agreeToTermsOfUse();
-        await startOnboardingPage.checkLoginPageIsLoaded();
+        await startOnboardingPage.check_loginPageIsLoaded();
         await startOnboardingPage.createWalletWithSrp();
 
         const onboardingPasswordPage = new OnboardingPasswordPage(driver);
-        await onboardingPasswordPage.checkPageIsLoaded();
+        await onboardingPasswordPage.check_pageIsLoaded();
         await onboardingPasswordPage.createWalletPassword(WALLET_PASSWORD);
 
         const secureWalletPage = new SecureWalletPage(driver);
-        await secureWalletPage.checkPageIsLoaded();
+        await secureWalletPage.check_pageIsLoaded();
         await secureWalletPage.revealAndConfirmSRP();
 
         if (process.env.SELENIUM_BROWSER !== Browser.FIREFOX) {
           const onboardingMetricsPage = new OnboardingMetricsPage(driver);
-          await onboardingMetricsPage.checkPageIsLoaded();
+          await onboardingMetricsPage.check_pageIsLoaded();
           await onboardingMetricsPage.clickNoThanksButton();
         }
 

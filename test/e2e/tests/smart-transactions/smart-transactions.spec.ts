@@ -9,7 +9,6 @@ import TransactionConfirmation from '../../page-objects/pages/confirmations/rede
 import HomePage from '../../page-objects/pages/home/homepage';
 import SwapPage from '../../page-objects/pages/swap/swap-page';
 import SendTokenPage from '../../page-objects/pages/send/send-token-page';
-import { TX_SENTINEL_URL } from '../../../../shared/constants/transaction';
 import {
   mockSmartTransactionRequests,
   mockGasIncludedTransactionRequests,
@@ -57,20 +56,17 @@ describe('Smart Transactions', function () {
     await withFixturesForSmartTransactions(
       {
         title: this.test?.fullTitle(),
-        testSpecificMock: async (mockServer: MockttpServer) => {
-          await mockChooseGasFeeTokenRequests(mockServer);
-          await mockSentinelNetworks(mockServer);
-        },
+        testSpecificMock: mockChooseGasFeeTokenRequests,
       },
       async ({ driver }) => {
         const homePage = new HomePage(driver);
-        await homePage.checkExpectedTokenBalanceIsDisplayed('20', 'ETH');
-        await homePage.checkIfSendButtonIsClickable();
+        await homePage.check_expectedTokenBalanceIsDisplayed('20', 'ETH');
+        await homePage.check_ifSendButtonIsClickable();
         await homePage.startSendFlow();
 
         // fill ens address as recipient when user lands on send token screen
         const sendPage = new SendTokenPage(driver);
-        await sendPage.checkPageIsLoaded();
+        await sendPage.check_pageIsLoaded();
         await sendPage.selectRecipientAccount('Account 1');
         await sendPage.fillAmount('.01');
 
@@ -81,12 +77,12 @@ describe('Smart Transactions', function () {
         await sendPage.clickViewActivity();
 
         const activityList = new ActivityListPage(driver);
-        await activityList.checkCompletedTxNumberDisplayedInActivity(2);
-        await activityList.checkNoFailedTransactions();
-        await activityList.checkConfirmedTxNumberDisplayedInActivity(2);
-        await activityList.checkTxAction('Sent', 2);
-        await activityList.checkTxAmountInActivity(`-0 ETH`, 1);
-        await activityList.checkTxAmountInActivity(`-0.01 ETH`, 2);
+        await activityList.check_completedTxNumberDisplayedInActivity(2);
+        await activityList.check_noFailedTransactions();
+        await activityList.check_confirmedTxNumberDisplayedInActivity(2);
+        await activityList.check_txAction('Sent', 2);
+        await activityList.check_txAmountInActivity(`-0 ETH`, 1);
+        await activityList.check_txAmountInActivity(`-0.01 ETH`, 2);
       },
     );
   });
@@ -99,12 +95,12 @@ describe('Smart Transactions', function () {
       },
       async ({ driver }) => {
         const homePage = new HomePage(driver);
-        await homePage.checkExpectedTokenBalanceIsDisplayed('20', 'ETH');
-        await homePage.checkIfSwapButtonIsClickable();
+        await homePage.check_expectedTokenBalanceIsDisplayed('20', 'ETH');
+        await homePage.check_ifSwapButtonIsClickable();
         await homePage.startSwapFlow();
 
         const swapPage = new SwapPage(driver);
-        await swapPage.checkPageIsLoaded();
+        await swapPage.check_pageIsLoaded();
         await swapPage.enterSwapAmount('2');
         await swapPage.selectDestinationToken('DAI');
 
@@ -114,15 +110,15 @@ describe('Smart Transactions', function () {
 
         await swapPage.waitForSmartTransactionToComplete('DAI');
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.goToActivityList();
 
         const activityList = new ActivityListPage(driver);
-        await activityList.checkCompletedTxNumberDisplayedInActivity();
-        await activityList.checkNoFailedTransactions();
-        await activityList.checkConfirmedTxNumberDisplayedInActivity();
-        await activityList.checkTxAction('Swap ETH to DAI', 1);
-        await activityList.checkTxAmountInActivity(`-2 ETH`, 1);
+        await activityList.check_completedTxNumberDisplayedInActivity();
+        await activityList.check_noFailedTransactions();
+        await activityList.check_confirmedTxNumberDisplayedInActivity();
+        await activityList.check_txAction('Swap ETH to DAI', 1);
+        await activityList.check_txAmountInActivity(`-2 ETH`, 1);
       },
     );
   });
@@ -135,12 +131,12 @@ describe('Smart Transactions', function () {
       },
       async ({ driver }) => {
         const homePage = new HomePage(driver);
-        await homePage.checkExpectedTokenBalanceIsDisplayed('20', 'ETH');
-        await homePage.checkIfSwapButtonIsClickable();
+        await homePage.check_expectedTokenBalanceIsDisplayed('20', 'ETH');
+        await homePage.check_ifSwapButtonIsClickable();
         await homePage.startSwapFlow();
 
         const swapPage = new SwapPage(driver);
-        await swapPage.checkPageIsLoaded();
+        await swapPage.check_pageIsLoaded();
         await swapPage.enterSwapAmount('20');
         await swapPage.checkQuoteIsGasIncluded();
 
@@ -150,18 +146,18 @@ describe('Smart Transactions', function () {
 
         await swapPage.waitForSmartTransactionToComplete('USDC');
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.goToActivityList();
 
         const activityList = new ActivityListPage(driver);
-        await activityList.checkCompletedTxNumberDisplayedInActivity();
-        await activityList.checkNoFailedTransactions();
-        await activityList.checkConfirmedTxNumberDisplayedInActivity();
+        await activityList.check_completedTxNumberDisplayedInActivity();
+        await activityList.check_noFailedTransactions();
+        await activityList.check_confirmedTxNumberDisplayedInActivity();
       },
     );
   });
 
-  it.skip('should execute a dApp Transaction', async function () {
+  it('should execute a dApp Transaction', async function () {
     await withFixturesForSmartTransactions(
       {
         title: this.test?.fullTitle(),
@@ -181,30 +177,10 @@ describe('Smart Transactions', function () {
         await homepage.goToActivityList();
 
         const activityList = new ActivityListPage(driver);
-        await activityList.checkCompletedTxNumberDisplayedInActivity();
-        await activityList.checkNoFailedTransactions();
-        await activityList.checkConfirmedTxNumberDisplayedInActivity();
+        await activityList.check_completedTxNumberDisplayedInActivity();
+        await activityList.check_noFailedTransactions();
+        await activityList.check_confirmedTxNumberDisplayedInActivity();
       },
     );
   });
 });
-
-async function mockSentinelNetworks(mockServer: MockttpServer) {
-  await mockServer
-    .forGet(`${TX_SENTINEL_URL}/networks`)
-    .always()
-    .thenCallback(() => {
-      return {
-        ok: true,
-        statusCode: 200,
-        json: {
-          '1': {
-            network: 'ethereum-mainnet',
-            confirmations: true,
-            relayTransactions: true,
-            sendBundle: true,
-          },
-        },
-      };
-    });
-}

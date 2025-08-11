@@ -35,11 +35,6 @@ export const getInternalAccounts = createSelector(
   (accounts) => accounts,
 );
 
-export const getInternalAccountsObject = createSelector(
-  (state: AccountsState) => state.metamask.internalAccounts.accounts,
-  (internalAccounts) => internalAccounts,
-);
-
 export const getMemoizedInternalAccountByAddress = createDeepEqualSelector(
   [getInternalAccounts, (_state, address) => address],
   (internalAccounts, address) => {

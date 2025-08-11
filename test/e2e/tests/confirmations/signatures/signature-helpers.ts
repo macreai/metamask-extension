@@ -489,7 +489,7 @@ export async function openDappAndTriggerSignature(
 ) {
   await loginWithBalanceValidation(driver);
   await testDapp.openTestDappPage({ url: DAPP_URL });
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await triggerSignature(type);
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 }
@@ -539,5 +539,5 @@ export async function assertVerifiedSiweMessage(
   await driver.waitUntilXWindowHandles(2);
   await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
 
-  await testDapp.checkSuccessSiwe(message);
+  await testDapp.check_successSiwe(message);
 }

@@ -60,14 +60,14 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
         }, 30000);
 
         const header = new HeaderNavbar(driver);
-        await header.checkPageIsLoaded();
+        await header.check_pageIsLoaded();
         await header.openAccountMenu();
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Verify default account is visible
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
 
@@ -92,11 +92,11 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
 
         // Reopen account menu to verify both accounts are visible
         await header.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           ADDED_ACCOUNT_NAME,
         );
 
@@ -121,17 +121,17 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
         }, 30000);
 
         const header = new HeaderNavbar(driver);
-        await header.checkPageIsLoaded();
+        await header.check_pageIsLoaded();
         await header.openAccountMenu();
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Verify both accounts from previous phase are still visible
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           ADDED_ACCOUNT_NAME,
         );
 
@@ -148,12 +148,12 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
         // Rename the second account
         await accountListPage.openAccountDetailsModal(ADDED_ACCOUNT_NAME);
         const accountDetailsModal = new AccountDetailsModal(driver);
-        await accountDetailsModal.checkPageIsLoaded();
+        await accountDetailsModal.check_pageIsLoaded();
         await accountDetailsModal.changeAccountLabel(NEW_ACCOUNT_NAME);
 
         // Reopen account menu to add a third account
         await header.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Add a third account
         await accountListPage.addAccount({
@@ -166,14 +166,14 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
 
         // Reopen account menu to verify all accounts are visible with correct names
         await header.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           NEW_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           LAST_ACCOUNT_NAME,
         );
 
@@ -200,20 +200,20 @@ describe('Account syncing - Adding and Renaming Accounts', function () {
         await driver.delay(2000);
 
         const header = new HeaderNavbar(driver);
-        await header.checkPageIsLoaded();
+        await header.check_pageIsLoaded();
         await header.openAccountMenu();
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Verify all accounts and renames are properly synced
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           NEW_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           LAST_ACCOUNT_NAME,
         );
 

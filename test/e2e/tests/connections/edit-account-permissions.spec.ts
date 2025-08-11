@@ -27,47 +27,47 @@ describe('Edit Accounts Permissions', function () {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.connectAccount({
           publicAddress: DEFAULT_FIXTURE_ACCOUNT,
         });
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
-        await new Homepage(driver).checkPageIsLoaded();
+        await new Homepage(driver).check_pageIsLoaded();
         new HeaderNavbar(driver).openAccountMenu();
 
         // create second account with custom label
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.addAccount({
           accountType: ACCOUNT_TYPE.Ethereum,
           accountName: accountLabel2,
         });
         const homepage = new Homepage(driver);
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_expectedBalanceIsDisplayed();
 
         // create third account with custom label
         await homepage.headerNavbar.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.addAccount({
           accountType: ACCOUNT_TYPE.Ethereum,
           accountName: accountLabel3,
         });
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_expectedBalanceIsDisplayed();
 
         // go to connections permissions page
         await homepage.headerNavbar.openPermissionsPage();
         const permissionListPage = new PermissionListPage(driver);
-        await permissionListPage.checkPageIsLoaded();
+        await permissionListPage.check_pageIsLoaded();
         await permissionListPage.openPermissionPageForSite(DAPP_HOST_ADDRESS);
         const sitePermissionPage = new SitePermissionPage(driver);
-        await sitePermissionPage.checkPageIsLoaded(DAPP_HOST_ADDRESS);
+        await sitePermissionPage.check_pageIsLoaded(DAPP_HOST_ADDRESS);
         await sitePermissionPage.editPermissionsForAccount([
           accountLabel2,
           accountLabel3,
         ]);
-        await sitePermissionPage.checkConnectedAccountsNumber(3);
+        await sitePermissionPage.check_connectedAccountsNumber(3);
       },
     );
   });

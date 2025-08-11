@@ -38,15 +38,15 @@ describe('Dapp interactions', function () {
         await driver.navigate();
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         // Trigger Notification
         await testDapp.clickAddNetworkButton();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const loginPage = new LoginPage(driver);
-        await loginPage.checkPageIsLoaded();
+        await loginPage.check_pageIsLoaded();
         await loginPage.loginToHomepage();
-        await new AddNetworkConfirmation(driver).checkPageIsLoaded(
+        await new AddNetworkConfirmation(driver).check_pageIsLoaded(
           'Localhost 8546',
         );
       },
@@ -69,36 +69,36 @@ describe('Dapp interactions', function () {
         // Connect to 2nd dapp => DAPP_ONE
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage({ url: DAPP_ONE_URL });
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.clickConnectAccountButton();
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const loginPage = new LoginPage(driver);
-        await loginPage.checkPageIsLoaded();
+        await loginPage.check_pageIsLoaded();
         await loginPage.loginToHomepage();
         const connectAccountConfirmation = new ConnectAccountConfirmation(
           driver,
         );
-        await connectAccountConfirmation.checkPageIsLoaded();
+        await connectAccountConfirmation.check_pageIsLoaded();
         await connectAccountConfirmation.confirmConnect();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-        await testDapp.checkConnectedAccounts(DEFAULT_FIXTURE_ACCOUNT);
+        await testDapp.check_connectedAccounts(DEFAULT_FIXTURE_ACCOUNT);
 
         // Login to homepage
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
-        await loginPage.checkPageIsLoaded();
+        await loginPage.check_pageIsLoaded();
         await loginPage.loginToHomepage();
         const homepage = new Homepage(driver);
-        await homepage.checkPageIsLoaded();
+        await homepage.check_pageIsLoaded();
 
         // Assert Connection
         await homepage.headerNavbar.openPermissionsPage();
         const permissionListPage = new PermissionListPage(driver);
-        await permissionListPage.checkPageIsLoaded();
-        await permissionListPage.checkConnectedToSite(DAPP_HOST_ADDRESS);
-        await permissionListPage.checkConnectedToSite(DAPP_ONE_ADDRESS);
+        await permissionListPage.check_pageIsLoaded();
+        await permissionListPage.check_connectedToSite(DAPP_HOST_ADDRESS);
+        await permissionListPage.check_connectedToSite(DAPP_ONE_ADDRESS);
       },
     );
   });
@@ -136,10 +136,10 @@ describe('Dapp interactions', function () {
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const loginPage = new LoginPage(driver);
-        await loginPage.checkPageIsLoaded();
+        await loginPage.check_pageIsLoaded();
         console.log('Prompted to unlock the wallet');
         await loginPage.loginToHomepage('123456');
-        await loginPage.checkIncorrectPasswordMessageIsDisplayed();
+        await loginPage.check_incorrectPasswordMessageIsDisplayed();
         await loginPage.loginToHomepage();
       },
     );

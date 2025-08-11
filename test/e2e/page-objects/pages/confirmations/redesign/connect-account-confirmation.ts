@@ -44,7 +44,9 @@ class ConnectAccountConfirmation {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.connectAccountConfirmationTitle,
@@ -107,7 +109,9 @@ class ConnectAccountConfirmation {
     await addSolanaAccountButton.click();
   }
 
-  async isCreateSolanaAccountModalButtonVisible(): Promise<boolean> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_isCreateSolanaAccountModalButtonVisible(): Promise<boolean> {
     try {
       await this.driver.findClickableElement(
         this.createSolanaAccountModalButton,
@@ -123,7 +127,9 @@ class ConnectAccountConfirmation {
     return true;
   }
 
-  async isConfirmButtonEnabled(): Promise<boolean> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_isConfirmButtonEnabled(): Promise<boolean> {
     try {
       await this.driver.findClickableElement(this.confirmConnectButton, {
         timeout: 1000,

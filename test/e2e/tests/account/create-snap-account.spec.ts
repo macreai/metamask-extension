@@ -29,7 +29,9 @@ describe('Create Snap Account', function (this: Suite) {
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
-        await new HeaderNavbar(driver).checkAccountLabel(newCustomAccountLabel);
+        await new HeaderNavbar(driver).check_accountLabel(
+          newCustomAccountLabel,
+        );
       },
     );
   });
@@ -62,9 +64,9 @@ describe('Create Snap Account', function (this: Suite) {
         );
         await new HeaderNavbar(driver).openAccountMenu();
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         for (const expectedName of expectedNames) {
-          await accountListPage.checkAccountDisplayedInAccountList(
+          await accountListPage.check_accountDisplayedInAccountList(
             expectedName,
           );
         }
@@ -90,7 +92,7 @@ describe('Create Snap Account', function (this: Suite) {
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.SnapSimpleKeyringDapp,
         );
-        await snapSimpleKeyringPage.checkErrorRequestMessageDisplayed();
+        await snapSimpleKeyringPage.check_errorRequestMessageDisplayed();
 
         // Check snap account is not displayed in account list after canceling the creation
         await driver.switchToWindowWithTitle(
@@ -98,8 +100,8 @@ describe('Create Snap Account', function (this: Suite) {
         );
         await new HeaderNavbar(driver).openAccountMenu();
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountIsNotDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountIsNotDisplayedInAccountList(
           'SSK Account',
         );
       },
@@ -125,7 +127,7 @@ describe('Create Snap Account', function (this: Suite) {
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.SnapSimpleKeyringDapp,
         );
-        await snapSimpleKeyringPage.checkErrorRequestMessageDisplayed();
+        await snapSimpleKeyringPage.check_errorRequestMessageDisplayed();
 
         // Check snap account is not displayed in account list after canceling the creation
         await driver.switchToWindowWithTitle(
@@ -133,8 +135,8 @@ describe('Create Snap Account', function (this: Suite) {
         );
         await new HeaderNavbar(driver).openAccountMenu();
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountIsNotDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountIsNotDisplayedInAccountList(
           'SSK Account',
         );
       },

@@ -77,13 +77,13 @@ describe('Popular Networks', function (this: Suite) {
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.clickAddButtonForPopularNetwork('0xa4b1');
 
         const networkSwitchModalConfirmation =
           new NetworkSwitchModalConfirmation(driver);
-        await networkSwitchModalConfirmation.checkPageIsLoaded();
-        await networkSwitchModalConfirmation.checkNetworkInformationIsDisplayed(
+        await networkSwitchModalConfirmation.check_pageIsLoaded();
+        await networkSwitchModalConfirmation.check_networkInformationIsDisplayed(
           {
             networkURL: 'https://arbitrum-mainnet.infura.io',
             currencySymbol: 'ETH',
@@ -95,7 +95,7 @@ describe('Popular Networks', function (this: Suite) {
         await networkSwitchModalConfirmation.clickApproveButton();
 
         // verify network is switched
-        await new Homepage(driver).checkPageIsLoaded();
+        await new Homepage(driver).check_pageIsLoaded();
       },
     );
   });
@@ -136,16 +136,16 @@ describe('Popular Networks', function (this: Suite) {
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.deleteNetwork('eip155:42161');
 
-        await homepage.checkPageIsLoaded();
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_pageIsLoaded();
+        await homepage.check_expectedBalanceIsDisplayed();
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         // check that arbitrum is on the list of popular network
-        await selectNetworkDialog.checkPageIsLoaded();
-        await selectNetworkDialog.checkPopularNetworkIsDisplayed({
+        await selectNetworkDialog.check_pageIsLoaded();
+        await selectNetworkDialog.check_popularNetworkIsDisplayed({
           chainId: '0xa4b1',
           networkName: 'Arbitrum One',
         });
@@ -180,11 +180,11 @@ describe('Popular Networks', function (this: Suite) {
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.openAddCustomNetworkModal();
 
         const addEditNetworkModal = new AddEditNetworkModal(driver);
-        await addEditNetworkModal.checkPageIsLoaded();
+        await addEditNetworkModal.check_pageIsLoaded();
         await addEditNetworkModal.fillNetworkNameInputField('cheapETH');
         await addEditNetworkModal.fillNetworkChainIdInputField(
           toHex(777).toString(),
@@ -194,7 +194,7 @@ describe('Popular Networks', function (this: Suite) {
 
         // add rpc url and explorer url
         const addRpcUrlModal = new AddNetworkRpcUrlModal(driver);
-        await addRpcUrlModal.checkPageIsLoaded();
+        await addRpcUrlModal.check_pageIsLoaded();
         await addRpcUrlModal.fillAddRpcUrlInput(
           'https://unresponsive-rpc.test',
         );
@@ -202,11 +202,11 @@ describe('Popular Networks', function (this: Suite) {
         await addRpcUrlModal.saveAddRpcUrl();
 
         // check the error message is displayed
-        await addEditNetworkModal.checkChainIdInputErrorMessageIsDisplayed(
+        await addEditNetworkModal.check_chainIdInputErrorMessageIsDisplayed(
           'Could not fetch chain ID. Is your RPC URL correct?',
         );
         assert.equal(
-          await addEditNetworkModal.checkSaveButtonIsEnabled(),
+          await addEditNetworkModal.check_saveButtonIsEnabled(),
           false,
         );
       },
@@ -247,26 +247,26 @@ describe('Popular Networks', function (this: Suite) {
         // navigate to security & privacy settings and toggle off network details check
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.goToPrivacySettings();
 
         const privacySettings = new PrivacySettings(driver);
-        await privacySettings.checkPageIsLoaded();
+        await privacySettings.check_pageIsLoaded();
         await privacySettings.toggleNetworkDetailsCheck();
         await settingsPage.closeSettingsPage();
 
         // return to the home screen
         const homepage = new Homepage(driver);
-        await homepage.checkPageIsLoaded();
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_pageIsLoaded();
+        await homepage.check_expectedBalanceIsDisplayed();
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.openAddCustomNetworkModal();
 
         const addEditNetworkModal = new AddEditNetworkModal(driver);
-        await addEditNetworkModal.checkPageIsLoaded();
+        await addEditNetworkModal.check_pageIsLoaded();
         await addEditNetworkModal.fillNetworkNameInputField('cheapETH');
         await addEditNetworkModal.fillNetworkChainIdInputField(
           toHex(100).toString(),
@@ -276,7 +276,7 @@ describe('Popular Networks', function (this: Suite) {
 
         // add rpc url and explorer url
         const addRpcUrlModal = new AddNetworkRpcUrlModal(driver);
-        await addRpcUrlModal.checkPageIsLoaded();
+        await addRpcUrlModal.check_pageIsLoaded();
         await addRpcUrlModal.fillAddRpcUrlInput('https://responsive-rpc.test');
         await addRpcUrlModal.fillAddRpcNameInput('testName');
         await addRpcUrlModal.saveAddRpcUrl();
@@ -284,7 +284,7 @@ describe('Popular Networks', function (this: Suite) {
 
         // check the save button is enabled
         assert.equal(
-          await addEditNetworkModal.checkSaveButtonIsEnabled(),
+          await addEditNetworkModal.check_saveButtonIsEnabled(),
           true,
         );
       },

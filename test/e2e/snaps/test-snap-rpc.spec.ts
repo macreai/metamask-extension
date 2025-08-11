@@ -38,12 +38,12 @@ describe('Test Snap RPC', function () {
         await snapInstall.clickConfirmButton();
         await snapInstall.clickOkButton();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestSnaps);
-        await testSnaps.checkInstallationComplete(
+        await testSnaps.check_installationComplete(
           'connectJsonRpcButton',
           'Reconnect to JSON-RPC Snap',
         );
         await testSnaps.scrollAndClickButton('sendRpcButton');
-        await testSnaps.checkMessageResultSpan(
+        await testSnaps.check_messageResultSpan(
           'rpcResultSpan',
           '"0x033e98d696ae15caef75fa8dd204a7c5c08d1272b2218ba3c20feeb4c691eec366"',
         );

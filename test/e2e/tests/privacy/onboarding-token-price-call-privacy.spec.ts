@@ -62,10 +62,10 @@ describe('MetaMask onboarding', function () {
 
         // complete create new wallet onboarding
         const onboardingCompletePage = new OnboardingCompletePage(driver);
-        await onboardingCompletePage.checkPageIsLoaded();
+        await onboardingCompletePage.check_pageIsLoaded();
         await onboardingCompletePage.completeOnboarding();
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
 
         // network requests happen here
         for (const mockedEndpoint of mockedEndpoints) {
@@ -116,10 +116,10 @@ describe('MetaMask onboarding', function () {
 
         // complete import wallet onboarding
         const onboardingCompletePage = new OnboardingCompletePage(driver);
-        await onboardingCompletePage.checkPageIsLoaded();
+        await onboardingCompletePage.check_pageIsLoaded();
         await onboardingCompletePage.completeOnboarding();
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
 
         // requests happen here
         for (const mockedEndpoint of mockedEndpoints) {

@@ -35,7 +35,9 @@ export default class ChangePasswordPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     console.log('Check change password page is loaded');
     await this.driver.waitForSelector(this.changePasswordPageTitle);
   }
@@ -54,7 +56,9 @@ export default class ChangePasswordPage {
     await this.driver.clickElement(this.saveButton);
   }
 
-  async checkPasswordChangedWarning(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_passwordChangedWarning(): Promise<void> {
     console.log('Check password changed warning');
     await this.driver.waitForSelector(this.passwordChangedWarning);
   }

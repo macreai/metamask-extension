@@ -21,10 +21,10 @@ describe('Permissions Page', function () {
         const headerNavbar = new HeaderNavbar(driver);
         await headerNavbar.openPermissionsPage();
         const permissionListPage = new PermissionListPage(driver);
-        await permissionListPage.checkPageIsLoaded();
+        await permissionListPage.check_pageIsLoaded();
 
         await permissionListPage.openPermissionPageForSite(DAPP_HOST_ADDRESS);
-        await new SitePermissionPage(driver).checkPageIsLoaded(
+        await new SitePermissionPage(driver).check_pageIsLoaded(
           DAPP_HOST_ADDRESS,
         );
       },

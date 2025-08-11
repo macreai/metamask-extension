@@ -31,12 +31,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.general);
 
         // navigate to general settings
         await settingsPage.goToSearchResultPage('General');
-        await new GeneralSettings(driver).checkPageIsLoaded();
+        await new GeneralSettings(driver).check_pageIsLoaded();
       },
     );
   });
@@ -52,12 +52,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.advanced);
 
         // Check if element redirects to the correct page
         await settingsPage.goToSearchResultPage('Advanced');
-        await new AdvancedSettings(driver).checkPageIsLoaded();
+        await new AdvancedSettings(driver).check_pageIsLoaded();
       },
     );
   });
@@ -73,12 +73,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.contacts);
 
         // Check if element redirects to the correct page
         await settingsPage.goToSearchResultPage('Contacts');
-        await new ContactsSettings(driver).checkPageIsLoaded();
+        await new ContactsSettings(driver).check_pageIsLoaded();
       },
     );
   });
@@ -94,12 +94,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.security);
 
         // Check if element redirects to the correct page
         await settingsPage.goToSearchResultPage('Security');
-        await new PrivacySettings(driver).checkPageIsLoaded();
+        await new PrivacySettings(driver).check_pageIsLoaded();
       },
     );
   });
@@ -115,12 +115,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.experimental);
 
         // Check if element redirects to the correct page
         await settingsPage.goToSearchResultPage('Experimental');
-        await new ExperimentalSettings(driver).checkPageIsLoaded();
+        await new ExperimentalSettings(driver).check_pageIsLoaded();
       },
     );
   });
@@ -136,12 +136,12 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput(settingsSearch.about);
 
         // Check if element redirects to the correct page
         await settingsPage.goToSearchResultPage('About');
-        await new AboutPage(driver).checkPageIsLoaded();
+        await new AboutPage(driver).check_pageIsLoaded();
       },
     );
   });
@@ -157,9 +157,9 @@ describe('Settings Search', function () {
 
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.fillSearchSettingsInput('Lorem ipsum');
-        await settingsPage.checkNoMatchingResultsFoundMessageIsDisplayed();
+        await settingsPage.check_noMatchingResultsFoundMessageIsDisplayed();
       },
     );
   });

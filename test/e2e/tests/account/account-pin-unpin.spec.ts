@@ -19,15 +19,15 @@ describe('Account list - pin/unpin functionality', function (this: Suite) {
 
         // pin account
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.openAccountOptionsMenu();
         await accountListPage.pinAccount();
-        await accountListPage.checkAccountIsPinned();
+        await accountListPage.check_accountIsPinned();
 
         // unpin account
         await accountListPage.openAccountOptionsMenu();
         await accountListPage.unpinAccount();
-        await accountListPage.checkAccountIsUnpinned();
+        await accountListPage.check_accountIsUnpinned();
       },
     );
   });
@@ -44,23 +44,23 @@ describe('Account list - pin/unpin functionality', function (this: Suite) {
 
         // pin account
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.openAccountOptionsMenu();
         await accountListPage.pinAccount();
-        await accountListPage.checkAccountIsPinned();
+        await accountListPage.check_accountIsPinned();
 
         // hide the same account and check the account is unpinned automatically
         await accountListPage.openAccountOptionsMenu();
         await accountListPage.hideAccount();
-        await accountListPage.checkHiddenAccountsListExists();
-        await accountListPage.checkAccountIsUnpinned();
+        await accountListPage.check_hiddenAccountsListExists();
+        await accountListPage.check_accountIsUnpinned();
 
         // unhide the same account and check the account is still unpinned
         await accountListPage.openHiddenAccountsList();
         await accountListPage.openHiddenAccountOptions();
         await accountListPage.unhideAccount();
-        await accountListPage.checkAccountDisplayedInAccountList();
-        await accountListPage.checkAccountIsUnpinned();
+        await accountListPage.check_accountDisplayedInAccountList();
+        await accountListPage.check_accountIsUnpinned();
       },
     );
   });

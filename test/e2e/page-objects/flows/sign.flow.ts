@@ -18,7 +18,7 @@ export const personalSignWithSnapAccount = async (
   approveTransaction: boolean = true,
 ): Promise<void> => {
   const testDapp = new TestDapp(driver);
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await testDapp.personalSign();
   if (!isSyncFlow) {
     await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
@@ -28,9 +28,9 @@ export const personalSignWithSnapAccount = async (
     );
   }
   if ((!isSyncFlow && approveTransaction) || isSyncFlow) {
-    await testDapp.checkSuccessPersonalSign(publicAddress);
+    await testDapp.check_successPersonalSign(publicAddress);
   } else {
-    await testDapp.checkFailedPersonalSign(
+    await testDapp.check_failedPersonalSign(
       'Error: Request rejected by user or snap.',
     );
   }
@@ -51,7 +51,7 @@ export const signTypedDataWithSnapAccount = async (
   approveTransaction: boolean = true,
 ): Promise<void> => {
   const testDapp = new TestDapp(driver);
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await testDapp.signTypedData();
   if (!isSyncFlow) {
     await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
@@ -61,9 +61,9 @@ export const signTypedDataWithSnapAccount = async (
     );
   }
   if ((!isSyncFlow && approveTransaction) || isSyncFlow) {
-    await testDapp.checkSuccessSignTypedData(publicAddress);
+    await testDapp.check_successSignTypedData(publicAddress);
   } else {
-    await testDapp.checkFailedSignTypedData(
+    await testDapp.check_failedSignTypedData(
       'Error: Request rejected by user or snap.',
     );
   }
@@ -84,7 +84,7 @@ export const signTypedDataV3WithSnapAccount = async (
   approveTransaction: boolean = true,
 ): Promise<void> => {
   const testDapp = new TestDapp(driver);
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await testDapp.signTypedDataV3Redesign();
 
   if (!isSyncFlow) {
@@ -95,9 +95,9 @@ export const signTypedDataV3WithSnapAccount = async (
     );
   }
   if ((!isSyncFlow && approveTransaction) || isSyncFlow) {
-    await testDapp.checkSuccessSignTypedDataV3(publicAddress);
+    await testDapp.check_successSignTypedDataV3(publicAddress);
   } else {
-    await testDapp.checkFailedSignTypedDataV3(
+    await testDapp.check_failedSignTypedDataV3(
       'Error: Request rejected by user or snap.',
     );
   }
@@ -118,7 +118,7 @@ export const signTypedDataV4WithSnapAccount = async (
   approveTransaction: boolean = true,
 ): Promise<void> => {
   const testDapp = new TestDapp(driver);
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await testDapp.signTypedDataV4();
   if (!isSyncFlow) {
     await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
@@ -128,9 +128,9 @@ export const signTypedDataV4WithSnapAccount = async (
     );
   }
   if ((!isSyncFlow && approveTransaction) || isSyncFlow) {
-    await testDapp.checkSuccessSignTypedDataV4(publicAddress);
+    await testDapp.check_successSignTypedDataV4(publicAddress);
   } else {
-    await testDapp.checkFailedSignTypedDataV4(
+    await testDapp.check_failedSignTypedDataV4(
       'Error: Request rejected by user or snap.',
     );
   }
@@ -151,7 +151,7 @@ export const signPermitWithSnapAccount = async (
   approveTransaction: boolean = true,
 ): Promise<void> => {
   const testDapp = new TestDapp(driver);
-  await testDapp.checkPageIsLoaded();
+  await testDapp.check_pageIsLoaded();
   await testDapp.signPermit();
   if (!isSyncFlow) {
     await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
@@ -161,9 +161,9 @@ export const signPermitWithSnapAccount = async (
     );
   }
   if ((!isSyncFlow && approveTransaction) || isSyncFlow) {
-    await testDapp.checkSuccessSignPermit(publicAddress);
+    await testDapp.check_successSignPermit(publicAddress);
   } else {
-    await testDapp.checkFailedSignPermit(
+    await testDapp.check_failedSignPermit(
       'Error: Request rejected by user or snap.',
     );
   }

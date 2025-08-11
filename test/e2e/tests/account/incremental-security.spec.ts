@@ -44,19 +44,19 @@ describe('Incremental Security', function (this: Suite) {
 
         // agree to terms of use and start onboarding
         const startOnboardingPage = new StartOnboardingPage(driver);
-        await startOnboardingPage.checkBannerPageIsLoaded();
+        await startOnboardingPage.check_bannerPageIsLoaded();
         await startOnboardingPage.agreeToTermsOfUse();
-        await startOnboardingPage.checkLoginPageIsLoaded();
+        await startOnboardingPage.check_loginPageIsLoaded();
         await startOnboardingPage.createWalletWithSrp();
 
         // create password
         const onboardingPasswordPage = new OnboardingPasswordPage(driver);
-        await onboardingPasswordPage.checkPageIsLoaded();
+        await onboardingPasswordPage.check_pageIsLoaded();
         await onboardingPasswordPage.createWalletPassword(WALLET_PASSWORD);
 
         // secure wallet later
         const secureWalletPage = new SecureWalletPage(driver);
-        await secureWalletPage.checkPageIsLoaded();
+        await secureWalletPage.check_pageIsLoaded();
         await secureWalletPage.skipSRPBackup();
 
         // skip collect metametrics
@@ -67,12 +67,12 @@ describe('Incremental Security', function (this: Suite) {
 
         // complete onboarding and pin extension
         const onboardingCompletePage = new OnboardingCompletePage(driver);
-        await onboardingCompletePage.checkPageIsLoaded();
+        await onboardingCompletePage.check_pageIsLoaded();
         await onboardingCompletePage.completeOnboarding();
 
         // copy the wallet address
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.headerNavbar.clickAddressCopyButton();
 
         // switched to Dapp and send eth to the current account
@@ -80,32 +80,32 @@ describe('Incremental Security', function (this: Suite) {
         const extension = windowHandles[0];
         const testDapp = new TestDappSendEthWithPrivateKey(driver);
         await testDapp.openTestDappSendEthWithPrivateKey();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.pasteAddressAndSendEthWithPrivateKey();
 
         // switch back to extension and check the balance is updated
         await driver.switchToWindow(extension);
-        await homePage.checkPageIsLoaded();
-        await homePage.checkExpectedBalanceIsDisplayed('1');
+        await homePage.check_pageIsLoaded();
+        await homePage.check_expectedBalanceIsDisplayed('1');
 
         // backup reminder is displayed and it directs user to the backup SRP page
         await homePage.goToBackupSRPPage();
-        await secureWalletPage.checkPageIsLoaded();
+        await secureWalletPage.check_pageIsLoaded();
 
         // reveal and confirm the Secret Recovery Phrase on backup SRP page
         await secureWalletPage.revealAndConfirmSRP(WALLET_PASSWORD);
 
         // complete backup
-        await onboardingCompletePage.checkPageIsLoadedBackup();
-        await onboardingCompletePage.checkKeepSrpSafeMessageIsDisplayed();
+        await onboardingCompletePage.check_pageIsLoaded_backup();
+        await onboardingCompletePage.check_keepSrpSafeMessageIsDisplayed();
         await onboardingCompletePage.completeBackup();
 
         // check the balance is correct after revealing and confirming the SRP
-        await homePage.checkPageIsLoaded();
-        await homePage.checkExpectedBalanceIsDisplayed('1');
+        await homePage.check_pageIsLoaded();
+        await homePage.check_expectedBalanceIsDisplayed('1');
 
         // check backup reminder is not displayed on homepage
-        await homePage.checkBackupReminderIsNotDisplayed();
+        await homePage.check_backupReminderIsNotDisplayed();
       },
     );
   });

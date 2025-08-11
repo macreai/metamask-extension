@@ -22,21 +22,27 @@ export default class GasFeeTokenModal {
   private readonly listItemSymbol =
     '[data-testid="gas-fee-token-list-item-symbol"]';
 
-  async checkAmountFiat(symbol: string, amountFiat: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_AmountFiat(symbol: string, amountFiat: string): Promise<void> {
     await this.driver.findElement({
       css: `${this.listItem(symbol)} ${this.listItemAmountFiat}`,
       text: amountFiat,
     });
   }
 
-  async checkAmountToken(symbol: string, amountToken: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_AmountToken(symbol: string, amountToken: string): Promise<void> {
     await this.driver.findElement({
       css: `${this.listItem(symbol)} ${this.listItemAmountToken}`,
       text: amountToken,
     });
   }
 
-  async checkBalance(symbol: string, balance: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_Balance(symbol: string, balance: string): Promise<void> {
     await this.driver.findElement({
       css: `${this.listItem(symbol)} ${this.listItemBalance}`,
       text: balance,

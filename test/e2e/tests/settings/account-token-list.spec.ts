@@ -47,9 +47,9 @@ describe('Settings', function () {
       },
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
-        await new AssetListPage(driver).checkTokenAmountIsDisplayed('25 ETH');
+        await new AssetListPage(driver).check_tokenAmountIsDisplayed('25 ETH');
         await new HeaderNavbar(driver).openAccountMenu();
-        await new AccountListPage(driver).checkAccountBalanceDisplayed(
+        await new AccountListPage(driver).check_accountBalanceDisplayed(
           '25 ETH',
         );
       },
@@ -79,8 +79,8 @@ describe('Settings', function () {
       async ({ driver }) => {
         await loginWithoutBalanceValidation(driver);
         const homePage = new HomePage(driver);
-        await homePage.checkExpectedBalanceIsDisplayed('42,500.00', 'USD');
-        await new AssetListPage(driver).checkTokenFiatAmountIsDisplayed(
+        await homePage.check_expectedBalanceIsDisplayed('42,500.00', 'USD');
+        await new AssetListPage(driver).check_tokenFiatAmountIsDisplayed(
           '$42,500.00',
         );
 
@@ -98,7 +98,7 @@ describe('Settings', function () {
         await switchToNetworkFromSendFlow(driver, 'Sepolia');
 
         await new HeaderNavbar(driver).openAccountMenu();
-        await new AccountListPage(driver).checkAccountValueAndSuffixDisplayed(
+        await new AccountListPage(driver).check_accountValueAndSuffixDisplayed(
           '$42,500.00',
         );
       },
@@ -120,7 +120,7 @@ describe('Settings', function () {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         await new HeaderNavbar(driver).openAccountMenu();
-        await new AccountListPage(driver).checkAccountBalanceDisplayed(
+        await new AccountListPage(driver).check_accountBalanceDisplayed(
           '25 ETH',
         );
       },

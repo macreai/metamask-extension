@@ -35,13 +35,17 @@ class SendSolanaPage {
     this.driver = driver;
   }
 
-  async checkAmountCurrencyIsDisplayed(currency: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_amountCurrencyIsDisplayed(currency: string): Promise<void> {
     await this.driver.waitForSelector(this.amountCurrencyLabel(currency));
   }
 
-  async checkPageIsLoaded(amount: string = '') {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(amount: string = '') {
     await this.driver.waitForSelector(this.toAddressInput, { timeout: 10000 });
-    console.log('checkPageIsLoaded after waitForSelector');
+    console.log('check_pageIsLoaded after waitForSelector');
     if (amount) {
       await this.driver.wait(async () => {
         try {
@@ -61,7 +65,9 @@ class SendSolanaPage {
     }
   }
 
-  async checkTokenBalanceIsDisplayed(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenBalanceIsDisplayed(
     amount: string,
     tokenName: string,
   ): Promise<void> {
@@ -71,7 +77,9 @@ class SendSolanaPage {
     });
   }
 
-  async checkTokenByNameIsDisplayed(tokenName: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenByNameIsDisplayed(tokenName: string): Promise<void> {
     await this.driver.waitForSelector(
       {
         text: tokenName,
@@ -81,7 +89,9 @@ class SendSolanaPage {
     );
   }
 
-  async checkTxSimulationFailed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_TxSimulationFailed(): Promise<void> {
     await this.driver.waitForSelector(
       { text: 'Transaction simulation failed', tag: 'p' },
       { timeout: 5000 },
@@ -93,7 +103,9 @@ class SendSolanaPage {
     console.log('Tx simulation failed');
   }
 
-  async checkValidationErrorAppears(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_validationErrorAppears(
     validationErrorText: string,
   ): Promise<boolean> {
     try {

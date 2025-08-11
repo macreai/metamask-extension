@@ -153,14 +153,14 @@ describe('Vault Corruption', function () {
     await onboard(driver);
 
     const homePage = new HomePage(driver);
-    await homePage.checkPageIsLoaded();
+    await homePage.check_pageIsLoaded();
     await homePage.waitForLoadingOverlayToDisappear();
 
     const headerNavbar = new HeaderNavbar(driver);
     const firstAddress = await getFirstAddress(driver, headerNavbar);
     await headerNavbar.lockMetaMask();
     const loginPage = new LoginPage(driver);
-    await loginPage.checkPageIsLoaded();
+    await loginPage.check_pageIsLoaded();
 
     // use the home page to destroy the vault
     await driver.executeAsyncScript(script);
@@ -247,11 +247,11 @@ describe('Vault Corruption', function () {
     await headerNavbar.openAccountMenu();
 
     const accountListPage = new AccountListPage(driver);
-    await accountListPage.checkPageIsLoaded();
+    await accountListPage.check_pageIsLoaded();
     await accountListPage.openAccountDetailsModal('Account 1');
 
     const accountDetailsModal = new AccountDetailsModal(driver);
-    await accountDetailsModal.checkPageIsLoaded();
+    await accountDetailsModal.check_pageIsLoaded();
 
     const accountAddress = await accountDetailsModal.getAccountAddress();
     return accountAddress;

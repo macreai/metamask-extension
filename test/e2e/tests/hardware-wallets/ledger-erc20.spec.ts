@@ -38,15 +38,15 @@ describe('Ledger Hardware', function (this: Suite) {
         );
         const testDappPage = new TestDappPage(driver);
         await testDappPage.openTestDappPage();
-        await testDappPage.checkPageIsLoaded();
+        await testDappPage.check_pageIsLoaded();
         await testDappPage.clickERC20CreateTokenButton();
         // Confirm token creation
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const createContractModal = new CreateContractModal(driver);
-        await createContractModal.checkPageIsLoaded();
+        await createContractModal.check_pageIsLoaded();
         await createContractModal.clickConfirm();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-        await testDappPage.checkTokenAddressesValue(
+        await testDappPage.check_TokenAddressesValue(
           '0xcB17707e0623251182A654BEdaE16429C78A7424',
         );
         // Add to wallet
@@ -59,7 +59,7 @@ describe('Ledger Hardware', function (this: Suite) {
         );
         const homePage = new HomePage(driver);
         await homePage.goToTokensTab();
-        await homePage.checkExpectedTokenBalanceIsDisplayed('10', symbol);
+        await homePage.check_expectedTokenBalanceIsDisplayed('10', symbol);
 
         // Transfer token
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
@@ -67,15 +67,15 @@ describe('Ledger Hardware', function (this: Suite) {
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const tokenTransferTransactionConfirmation =
           new TokenTransferTransactionConfirmation(driver);
-        await tokenTransferTransactionConfirmation.checkPageIsLoaded();
+        await tokenTransferTransactionConfirmation.check_pageIsLoaded();
         await tokenTransferTransactionConfirmation.clickConfirmButton();
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         const activityListPage = new ActivityListPage(driver);
         await homePage.goToActivityList();
-        await activityListPage.checkTxAction(`Sent ${symbol}`);
-        await activityListPage.checkTxAmountInActivity(`-1.5 ${symbol}`);
+        await activityListPage.check_txAction(`Sent ${symbol}`);
+        await activityListPage.check_txAmountInActivity(`-1.5 ${symbol}`);
 
         // Approve token
         const txConfirmation = new TransactionConfirmation(driver);
@@ -87,10 +87,10 @@ describe('Ledger Hardware', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         await homePage.goToActivityList();
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           `Approve ${symbol} spending cap`,
         );
-        await activityListPage.checkWaitForTransactionStatus('confirmed');
+        await activityListPage.check_waitForTransactionStatus('confirmed');
 
         // Increase token allowance
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
@@ -101,10 +101,10 @@ describe('Ledger Hardware', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         await homePage.goToActivityList();
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           `Increase ${symbol} spending cap`,
         );
-        await activityListPage.checkWaitForTransactionStatus('confirmed');
+        await activityListPage.check_waitForTransactionStatus('confirmed');
       },
     );
   });

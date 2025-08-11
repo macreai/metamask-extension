@@ -2464,17 +2464,17 @@ describe('Actions', () => {
     });
   });
 
-  describe('#getUserProfileLineage', () => {
-    it('calls getUserProfileLineage in the background', async () => {
-      const getUserProfileLineageStub = sinon.stub().resolves();
+  describe('#getUserProfileMetaMetrics', () => {
+    it('calls getUserProfileMetaMetrics in the background', async () => {
+      const getUserProfileMetaMetricsStub = sinon.stub().resolves();
 
       background.getApi.returns({
-        getUserProfileLineage: getUserProfileLineageStub,
+        getUserProfileMetaMetrics: getUserProfileMetaMetricsStub,
       });
       setBackgroundConnection(background.getApi());
 
-      await actions.getUserProfileLineage();
-      expect(getUserProfileLineageStub.calledOnceWith()).toBe(true);
+      await actions.getUserProfileMetaMetrics();
+      expect(getUserProfileMetaMetricsStub.calledOnceWith()).toBe(true);
     });
   });
 

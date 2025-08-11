@@ -8,7 +8,7 @@ import { Platform } from '@metamask/profile-sync-controller/sdk';
 import { isSolanaAddress } from '../../../shared/lib/multichain/accounts';
 import type { CarouselSlide } from '../../../shared/constants/app-state';
 import {
-  getUserProfileLineage as getUserProfileLineageAction,
+  getUserProfileMetaMetrics as getUserProfileMetaMetricsAction,
   updateSlides,
 } from '../../store/actions';
 import {
@@ -140,9 +140,9 @@ export const useCarouselManagement = ({
         remoteFeatureFlags?.contentfulCarouselEnabled ?? false;
 
       if (useExternalServices && showDownloadMobileAppSlide) {
-        const userProfileLineage = await getUserProfileLineageAction();
-        if (userProfileLineage) {
-          const isUserAvailableOnMobile = userProfileLineage.lineage.some(
+        const userProfileMetaMetrics = await getUserProfileMetaMetricsAction();
+        if (userProfileMetaMetrics) {
+          const isUserAvailableOnMobile = userProfileMetaMetrics.lineage.some(
             (lineage) => lineage.agent === Platform.MOBILE,
           );
 

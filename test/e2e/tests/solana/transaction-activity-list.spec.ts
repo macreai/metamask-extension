@@ -24,28 +24,28 @@ describe('Transaction activity list', function (this: Suite) {
         await homePage.goToActivityList();
 
         const activityList = new ActivityListPage(driver);
-        await activityList.checkConfirmedTxNumberDisplayedInActivity(1);
-        await activityList.checkTxAction('Sent', 1);
-        await activityList.checkTxAmountInActivity('-0.00708 SOL', 1);
-        await activityList.checkNoFailedTransactions();
+        await activityList.check_confirmedTxNumberDisplayedInActivity(1);
+        await activityList.check_txAction('Sent', 1);
+        await activityList.check_txAmountInActivity('-0.00708 SOL', 1);
+        await activityList.check_noFailedTransactions();
         await activityList.clickOnActivity(1);
         const transactionDetails = new TransactionDetailsPage(driver);
-        await transactionDetails.checkTransactionStatus(
+        await transactionDetails.check_transactionStatus(
           commonSolanaTxConfirmedDetailsFixture.status,
         );
-        await transactionDetails.checkTransactionAmount(
+        await transactionDetails.check_transactionAmount(
           commonSolanaTxConfirmedDetailsFixture.amount,
         );
-        await transactionDetails.checkTransactionFromToLink(
+        await transactionDetails.check_transactionFromToLink(
           commonSolanaTxConfirmedDetailsFixture.fromAddress,
         );
-        await transactionDetails.checkTransactionFromToLink(
+        await transactionDetails.check_transactionFromToLink(
           commonSolanaTxConfirmedDetailsFixture.toAddress,
         );
-        await transactionDetails.checkTransactionHashLink(
+        await transactionDetails.check_transactionHashLink(
           commonSolanaTxConfirmedDetailsFixture.txHash,
         );
-        await transactionDetails.checkTransactionViewDetailsLink();
+        await transactionDetails.check_transactionViewDetailsLink();
       },
     );
   });
@@ -59,22 +59,22 @@ describe('Transaction activity list', function (this: Suite) {
       },
       async (driver) => {
         const homePage = new NonEvmHomepage(driver);
-        await homePage.checkPageIsLoaded('50');
+        await homePage.check_pageIsLoaded('50');
         await homePage.goToActivityList();
         const activityList = new ActivityListPage(driver);
-        await activityList.checkFailedTxNumberDisplayedInActivity(1);
-        await activityList.checkTxAction('Interaction', 1);
+        await activityList.check_failedTxNumberDisplayedInActivity(1);
+        await activityList.check_txAction('Interaction', 1);
         await activityList.clickOnActivity(1);
         const transactionDetails = new TransactionDetailsPage(driver);
 
-        await transactionDetails.checkTransactionStatus(
+        await transactionDetails.check_transactionStatus(
           commonSolanaTxFailedDetailsFixture.status,
         );
-        await transactionDetails.checkTransactionHashLink(
+        await transactionDetails.check_transactionHashLink(
           commonSolanaTxFailedDetailsFixture.txHash,
         );
-        await transactionDetails.checkTransactionViewDetailsLink();
-        await transactionDetails.checkNetworkFeeTransaction(
+        await transactionDetails.check_transactionViewDetailsLink();
+        await transactionDetails.check_networkFeeTransaction(
           commonSolanaTxFailedDetailsFixture.networkFee,
         );
       },

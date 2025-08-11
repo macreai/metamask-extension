@@ -19,16 +19,16 @@ describe('Privacy Mode', function () {
       async ({ driver }: { driver: Driver }) => {
         await loginWithBalanceValidation(driver);
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.togglePrivacyBalance();
-        await homePage.checkExpectedBalanceIsDisplayed('••••••', '••••••');
+        await homePage.check_expectedBalanceIsDisplayed('••••••', '••••••');
 
         const headerNavbar = new HeaderNavbar(driver);
         await headerNavbar.openAccountMenu();
 
         const accountList = new AccountListPage(driver);
-        await accountList.checkPageIsLoaded();
-        await accountList.checkBalanceIsPrivateEverywhere();
+        await accountList.check_pageIsLoaded();
+        await accountList.check_balanceIsPrivateEverywhere();
       },
     );
   });
@@ -49,16 +49,16 @@ describe('Privacy Mode', function () {
         await loginWithoutBalanceValidation(driver);
 
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.togglePrivacyBalance();
-        await homePage.checkExpectedBalanceIsDisplayed('25 ETH');
+        await homePage.check_expectedBalanceIsDisplayed('25 ETH');
 
         const headerNavbar = new HeaderNavbar(driver);
         await headerNavbar.openAccountMenu();
 
         const accountList = new AccountListPage(driver);
-        await accountList.checkPageIsLoaded();
-        await accountList.checkAccountBalanceDisplayed('$42,500');
+        await accountList.check_pageIsLoaded();
+        await accountList.check_accountBalanceDisplayed('$42,500');
       },
     );
   });

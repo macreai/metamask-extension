@@ -35,16 +35,16 @@ describe('Trezor Hardware', function (this: Suite) {
         )) ?? console.error('localNodes is undefined or empty');
         await loginWithoutBalanceValidation(driver);
         const homePage = new HomePage(driver);
-        await homePage.checkExpectedBalanceIsDisplayed('1208925.8196');
+        await homePage.check_expectedBalanceIsDisplayed('1208925.8196');
         await sendRedesignedTransactionToAddress({
           driver,
           recipientAddress: RECIPIENT,
           amount: '1',
         });
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         const activityList = new ActivityListPage(driver);
-        await activityList.checkConfirmedTxNumberDisplayedInActivity();
-        await activityList.checkTxAmountInActivity();
+        await activityList.check_confirmedTxNumberDisplayedInActivity();
+        await activityList.check_txAmountInActivity();
       },
     );
   });

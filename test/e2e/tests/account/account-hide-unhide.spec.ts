@@ -19,16 +19,16 @@ describe('Account list - hide/unhide functionality', function (this: Suite) {
 
         // hide account
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.openAccountOptionsMenu();
         await accountListPage.hideAccount();
-        await accountListPage.checkHiddenAccountsListExists();
+        await accountListPage.check_hiddenAccountsListExists();
 
         // unhide account
         await accountListPage.openHiddenAccountsList();
         await accountListPage.openHiddenAccountOptions();
         await accountListPage.unhideAccount();
-        await accountListPage.checkAccountDisplayedInAccountList();
+        await accountListPage.check_accountDisplayedInAccountList();
       },
     );
   });

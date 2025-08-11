@@ -63,7 +63,7 @@ describe('Remove Network:', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         const beforePermittedChains = await getPermittedChains(driver);
         assert.deepEqual(beforePermittedChains, ['0x539', '0x53a']);
@@ -72,15 +72,15 @@ describe('Remove Network:', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         const homepage = new HomePage(driver);
-        await homepage.checkPageIsLoaded();
+        await homepage.check_pageIsLoaded();
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.deleteNetwork('eip155:1338');
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         const afterPermittedChains = await getPermittedChains(driver);
         assert.deepEqual(afterPermittedChains, ['0x539']);
@@ -147,7 +147,7 @@ describe('Remove Network:', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         const beforePermittedChains = await getPermittedChains(driver);
         assert.deepEqual(beforePermittedChains, ['0x539', '0x53a']);
@@ -158,21 +158,21 @@ describe('Remove Network:', function (this: Suite) {
         await switchToEditRPCViaGlobalMenuNetworks(driver);
 
         const selectNetworkDialog = new SelectNetwork(driver);
-        await selectNetworkDialog.checkPageIsLoaded();
+        await selectNetworkDialog.check_pageIsLoaded();
         await selectNetworkDialog.openNetworkListOptions('eip155:1338');
         await selectNetworkDialog.openEditNetworkModal();
 
         // Remove the second RPC
         const editNetworkModal = new AddEditNetworkModal(driver);
-        await editNetworkModal.checkPageIsLoaded();
+        await editNetworkModal.check_pageIsLoaded();
         await editNetworkModal.removeRPCInEditNetworkModal(2);
-        await editNetworkModal.checkRpcIsDisplayed('127.0.0.1:8546', false);
+        await editNetworkModal.check_rpcIsDisplayed('127.0.0.1:8546', false);
 
         // Save the edited network
         await editNetworkModal.saveEditedNetwork();
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         const afterPermittedChains = await getPermittedChains(driver);
         assert.deepEqual(afterPermittedChains, ['0x539', '0x53a']);

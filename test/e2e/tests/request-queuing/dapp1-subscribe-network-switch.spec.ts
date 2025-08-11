@@ -36,7 +36,7 @@ describe('Request Queueing', function () {
         // Connect to dapp
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.connectAccount({});
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
 

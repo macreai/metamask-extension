@@ -30,11 +30,11 @@ export async function openTestSnapClickButtonAndInstall(
   await testSnaps.openPage();
   await testSnaps.scrollAndClickButton(buttonName);
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await snapInstall.checkPageIsLoaded();
+  await snapInstall.check_pageIsLoaded();
   await snapInstall.clickConnectButton();
   await snapInstall.clickConfirmButton();
   if (withWarning) {
-    await snapInstallWarning.checkPageIsLoaded();
+    await snapInstallWarning.check_pageIsLoaded();
     await snapInstallWarning.clickCheckboxPermission();
     await snapInstallWarning.clickConfirmButton();
   }

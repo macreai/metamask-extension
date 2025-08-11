@@ -57,7 +57,9 @@ class AccountDetailsModal {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.editableLabelButton,
@@ -158,7 +160,9 @@ class AccountDetailsModal {
    *
    * @param expectedAddress - The expected address to check.
    */
-  async checkAddressInAccountDetailsModal(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_addressInAccountDetailsModal(
     expectedAddress: string,
   ): Promise<void> {
     console.log(
@@ -171,7 +175,9 @@ class AccountDetailsModal {
     });
   }
 
-  async checkShowPrivateKeyButtonIsNotDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_showPrivateKeyButtonIsNotDisplayed(): Promise<void> {
     console.log('Check that show private key button is not displayed');
     await this.driver.assertElementNotPresent(this.showPrivateKeyButton);
   }

@@ -19,7 +19,9 @@ class UpdateModal {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded() {
     try {
       await this.driver.waitForSelector(this.updateModal);
     } catch (e) {
@@ -29,7 +31,9 @@ class UpdateModal {
     console.log('Update modal is loaded');
   }
 
-  async checkPageIsNotPresent() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsNotPresent() {
     console.log('Checking if update modal is not present');
     const isPresent = await this.driver.isElementPresent(this.updateModal);
     if (isPresent) {

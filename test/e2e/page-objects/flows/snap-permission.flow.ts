@@ -17,11 +17,11 @@ export async function confirmPermissionSwitchToTestSnap(
   const snapInstall = new SnapInstall(driver);
   const snapInstallWarning = new SnapInstallWarning(driver);
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await snapInstall.checkPageIsLoaded();
+  await snapInstall.check_pageIsLoaded();
   await snapInstall.clickConnectButton();
   await snapInstall.clickConfirmButton();
   if (withWarning) {
-    await snapInstallWarning.checkPageIsLoaded();
+    await snapInstallWarning.check_pageIsLoaded();
     await snapInstallWarning.clickCheckboxPermission();
     await snapInstallWarning.clickConfirmButton();
   }

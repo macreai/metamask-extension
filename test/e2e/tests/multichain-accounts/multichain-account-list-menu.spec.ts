@@ -20,25 +20,29 @@ describe('Multichain Accounts - Account tree', function (this: Suite) {
       },
       async (driver: Driver) => {
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Ensure that wallet information is displayed
-        await accountListPage.checkWalletDisplayedInAccountListMenu('Wallet 1');
-        await accountListPage.checkWalletDisplayedInAccountListMenu('Wallet 2');
-        await accountListPage.checkWalletDetailsButtonIsDisplayed();
+        await accountListPage.check_walletDisplayedInAccountListMenu(
+          'Wallet 1',
+        );
+        await accountListPage.check_walletDisplayedInAccountListMenu(
+          'Wallet 2',
+        );
+        await accountListPage.check_walletDetailsButtonIsDisplayed();
 
         // Ensure that accounts within the wallets are displayed
-        await accountListPage.checkAccountAddressDisplayedInAccountList(
+        await accountListPage.check_accountAddressDisplayedInAccountList(
           '0x5CfE7...6a7e1',
         );
-        await accountListPage.checkAccountAddressDisplayedInAccountList(
+        await accountListPage.check_accountAddressDisplayedInAccountList(
           '0xc6D5a...874bf',
         );
-        await accountListPage.checkAccountBalanceDisplayed('$42,500.00');
-        await accountListPage.checkAccountBalanceDisplayed('$0.00');
-        await accountListPage.checkAccountDisplayedInAccountList('Account 1');
-        await accountListPage.checkAccountDisplayedInAccountList('Account 2');
-        await accountListPage.checkNumberOfAvailableAccounts(2);
+        await accountListPage.check_accountBalanceDisplayed('$42,500.00');
+        await accountListPage.check_accountBalanceDisplayed('$0.00');
+        await accountListPage.check_accountDisplayedInAccountList('Account 1');
+        await accountListPage.check_accountDisplayedInAccountList('Account 2');
+        await accountListPage.check_numberOfAvailableAccounts(2);
       },
     );
   });
@@ -51,25 +55,27 @@ describe('Multichain Accounts - Account tree', function (this: Suite) {
       },
       async (driver: Driver) => {
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Ensure that wallet information is displayed
-        await accountListPage.checkWalletDisplayedInAccountListMenu('Wallet 1');
-        await accountListPage.checkWalletDisplayedInAccountListMenu('Ledger');
-        await accountListPage.checkWalletDetailsButtonIsDisplayed();
+        await accountListPage.check_walletDisplayedInAccountListMenu(
+          'Wallet 1',
+        );
+        await accountListPage.check_walletDisplayedInAccountListMenu('Ledger');
+        await accountListPage.check_walletDetailsButtonIsDisplayed();
 
         // Ensure that accounts within the wallets are displayed
-        await accountListPage.checkAccountAddressDisplayedInAccountList(
+        await accountListPage.check_accountAddressDisplayedInAccountList(
           '0x5CfE7...6a7e1',
         );
-        await accountListPage.checkAccountAddressDisplayedInAccountList(
+        await accountListPage.check_accountAddressDisplayedInAccountList(
           '0xF6846...8223c',
         );
-        await accountListPage.checkAccountBalanceDisplayed('$42,500.00');
-        await accountListPage.checkAccountBalanceDisplayed('$0.00');
-        await accountListPage.checkAccountDisplayedInAccountList('Account 1');
-        await accountListPage.checkAccountDisplayedInAccountList('Ledger 1');
-        await accountListPage.checkNumberOfAvailableAccounts(2);
+        await accountListPage.check_accountBalanceDisplayed('$42,500.00');
+        await accountListPage.check_accountBalanceDisplayed('$0.00');
+        await accountListPage.check_accountDisplayedInAccountList('Account 1');
+        await accountListPage.check_accountDisplayedInAccountList('Ledger 1');
+        await accountListPage.check_numberOfAvailableAccounts(2);
       },
     );
   });
@@ -94,24 +100,28 @@ describe('Multichain Accounts - Account tree', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         const headerNavbar = new HeaderNavbar(driver);
-        await headerNavbar.checkAccountLabel('SSK Account');
+        await headerNavbar.check_accountLabel('SSK Account');
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Ensure that wallet information is displayed
-        await accountListPage.checkWalletDisplayedInAccountListMenu('Wallet 1');
-        await accountListPage.checkWalletDisplayedInAccountListMenu(
+        await accountListPage.check_walletDisplayedInAccountListMenu(
+          'Wallet 1',
+        );
+        await accountListPage.check_walletDisplayedInAccountListMenu(
           'MetaMask Simple Snap Keyring',
         );
-        await accountListPage.checkWalletDetailsButtonIsDisplayed();
+        await accountListPage.check_walletDetailsButtonIsDisplayed();
 
         // Ensure that an SSK account within the wallet is displayed
-        await accountListPage.checkAccountBalanceDisplayed('$42,500.00');
-        await accountListPage.checkAccountBalanceDisplayed('$0.00');
-        await accountListPage.checkAccountDisplayedInAccountList('Account 1');
-        await accountListPage.checkAccountDisplayedInAccountList('SSK Account');
-        await accountListPage.checkNumberOfAvailableAccounts(3);
+        await accountListPage.check_accountBalanceDisplayed('$42,500.00');
+        await accountListPage.check_accountBalanceDisplayed('$0.00');
+        await accountListPage.check_accountDisplayedInAccountList('Account 1');
+        await accountListPage.check_accountDisplayedInAccountList(
+          'SSK Account',
+        );
+        await accountListPage.check_numberOfAvailableAccounts(3);
       },
     );
   });

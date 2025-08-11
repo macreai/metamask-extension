@@ -30,14 +30,18 @@ class TransactionDetailsPage {
     tag: 'span',
   };
 
-  async checkTransactionStatus(status: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionStatus(status: string): Promise<void> {
     await this.driver.waitForSelector({
       text: status,
       tag: 'p',
     });
   }
 
-  async checkTransactionAmount(amount: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionAmount(amount: string): Promise<void> {
     const transactionAmount = await this.driver.findElement(
       By.css('[data-testid="transaction-list-item-primary-currency"]'),
     );
@@ -45,7 +49,9 @@ class TransactionDetailsPage {
     assert.equal(transactionAmountText, amount);
   }
 
-  async checkTransactionNetworkFee(networkFee: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionNetworkFee(networkFee: string): Promise<void> {
     const transactionAmount = await this.driver.findElement(
       By.css('[data-testid="transaction-base-fee"]'),
     );
@@ -53,33 +59,43 @@ class TransactionDetailsPage {
     assert.equal(transactionAmountText, networkFee);
   }
 
-  async checkTransactionFromToLink(fromToAddress: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionFromToLink(fromToAddress: string): Promise<void> {
     await this.driver.waitForSelector(
       By.css(`a[href='${this.solanaExplorerUrl}/account/${fromToAddress}']`),
     );
   }
 
-  async checkTransactionHashLink(txHash: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionHashLink(txHash: string): Promise<void> {
     await this.driver.waitForSelector(
       By.css(`a[href='${this.solanaExplorerUrl}/tx/${txHash}']`),
     );
   }
 
-  async checkAmountTransaction(amount: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_amountTransaction(amount: string): Promise<void> {
     await this.driver.waitForSelector({
       text: amount,
       tag: 'p',
     });
   }
 
-  async checkNetworkFeeTransaction(amount: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_networkFeeTransaction(amount: string): Promise<void> {
     await this.driver.waitForSelector({
       text: amount,
       tag: 'p',
     });
   }
 
-  async checkTransactionViewDetailsLink(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionViewDetailsLink(): Promise<void> {
     await this.driver.waitForSelector({
       text: 'View details',
       tag: 'button',

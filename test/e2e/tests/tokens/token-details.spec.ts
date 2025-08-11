@@ -42,7 +42,7 @@ describe('Token Details', function () {
 
         const homePage = new HomePage(driver);
         const assetListPage = new AssetListPage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await assetListPage.importCustomTokenByChain(
           chainId,
           tokenAddress,
@@ -50,7 +50,7 @@ describe('Token Details', function () {
         );
         await assetListPage.dismissTokenImportedMessage();
         await assetListPage.openTokenDetails(symbol);
-        await assetListPage.checkTokenSymbolAndAddressDetails(
+        await assetListPage.check_tokenSymbolAndAddressDetails(
           symbol,
           tokenAddress,
         );
@@ -92,7 +92,7 @@ describe('Token Details', function () {
 
         const homePage = new HomePage(driver);
         const assetListPage = new AssetListPage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await assetListPage.importCustomTokenByChain(
           chainId,
           tokenAddress,
@@ -100,7 +100,7 @@ describe('Token Details', function () {
         );
         await assetListPage.dismissTokenImportedMessage();
         await assetListPage.openTokenDetails(symbol);
-        await assetListPage.checkTokenSymbolAndAddressDetails(
+        await assetListPage.check_tokenSymbolAndAddressDetails(
           symbol,
           tokenAddress,
         );
@@ -113,12 +113,12 @@ describe('Token Details', function () {
           marketData.marketCap * ethConversionInUsd
         }.00`;
 
-        await assetListPage.checkTokenPriceAndMarketCap(
+        await assetListPage.check_tokenPriceAndMarketCap(
           expectedPrice,
           expectedMarketCap,
         );
 
-        await assetListPage.checkPriceChartIsShown();
+        await assetListPage.check_priceChartIsShown();
       },
     );
   });
@@ -133,7 +133,7 @@ describe('Token Details', function () {
         await loginWithBalanceValidation(driver);
 
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
 
         const assetListPage = new AssetListPage(driver);
         await assetListPage.openTokenDetails('ETH');

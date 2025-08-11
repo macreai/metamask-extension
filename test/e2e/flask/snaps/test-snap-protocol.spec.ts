@@ -31,18 +31,18 @@ describe('Test Protocol Snaps', function () {
 
         const testDapp = new TestDappMultichain(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.connectExternallyConnectable(extensionId);
         await testDapp.initCreateSessionScopes([devnetScope]);
 
         const connectAccountConfirmation = new ConnectAccountConfirmation(
           driver,
         );
-        await connectAccountConfirmation.checkPageIsLoaded();
+        await connectAccountConfirmation.check_pageIsLoaded();
         await connectAccountConfirmation.confirmConnect();
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.MultichainTestDApp);
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await testDapp.invokeMethodAndCheckResult({
           scope: devnetScope,
           method: 'getBlockHeight',

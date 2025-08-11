@@ -95,32 +95,34 @@ export async function bridgeTransaction(
   const bridgePage = new BridgeQuotePage(driver);
   await bridgePage.enterBridgeQuote(quote);
   await bridgePage.waitForQuote();
-  await bridgePage.checkExpectedNetworkFeeIsDisplayed();
+  await bridgePage.check_expectedNetworkFeeIsDisplayed();
   await bridgePage.submitQuote();
 
   await homePage.goToActivityList();
 
   const activityList = new ActivityListPage(driver);
-  await activityList.checkCompletedBridgeTransactionActivity(transactionsCount);
+  await activityList.check_completedBridgeTransactionActivity(
+    transactionsCount,
+  );
 
   if (quote.unapproved) {
-    await activityList.checkTxAction(`Bridged to ${quote.toChain}`);
-    await activityList.checkTxAction(
+    await activityList.check_txAction(`Bridged to ${quote.toChain}`);
+    await activityList.check_txAction(
       `Approve ${quote.tokenFrom} for bridge`,
       2,
     );
   } else {
-    await activityList.checkTxAction(`Bridged to ${quote.toChain}`);
+    await activityList.check_txAction(`Bridged to ${quote.toChain}`);
   }
   // Check the amount of ETH deducted in the activity is correct
-  await activityList.checkTxAmountInActivity(
+  await activityList.check_txAmountInActivity(
     `-${quote.amount} ${quote.tokenFrom}`,
   );
 
   // Check the wallet ETH balance is correct
   const accountListPage = new AccountListPage(driver);
   if (expectedWalletBalance) {
-    await accountListPage.checkAccountValueAndSuffixDisplayed(
+    await accountListPage.check_accountValueAndSuffixDisplayed(
       expectedWalletBalance,
     );
   }

@@ -188,7 +188,7 @@ async function defineAndRunBuildTasks() {
 
   const browserVersionMap = getBrowserVersionMap(browserPlatforms, version);
 
-  const ignoredFiles = getIgnoredFiles(entryTask);
+  const ignoredFiles = getIgnoredFiles();
 
   const staticTasks = createStaticAssetTasks({
     browserPlatforms,
@@ -459,11 +459,10 @@ testDev: Create an unoptimized, live-reloading build for debugging e2e tests.`,
 /**
  * Gets the files to be ignored by the current build, if any.
  *
- * @param target - The build target.
  * @returns {string[] | null} The array of files to be ignored by the current
  * build, or `null` if no files are to be ignored.
  */
-function getIgnoredFiles(target) {
+function getIgnoredFiles() {
   const buildConfig = loadBuildTypesConfig();
   const cwd = process.cwd();
 
@@ -494,14 +493,5 @@ function getIgnoredFiles(target) {
 Please fix builds.yml or specify a compatible set of features.`);
   }
 
-  if (
-    target.includes(BUILD_TARGETS.DEV) ||
-    target.includes(BUILD_TARGETS.TEST)
-  ) {
-    return ignoredPaths;
-  }
-
-  // For all production build tasks exclude test files.
-  const testPaths = globby(['./test', './app/scripts/fixtures']);
-  return [...ignoredPaths, ...testPaths];
+  return ignoredPaths;
 }

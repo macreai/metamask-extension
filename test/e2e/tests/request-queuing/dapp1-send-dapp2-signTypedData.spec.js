@@ -1,15 +1,16 @@
-import FixtureBuilder from '../../fixture-builder';
-import {
+const FixtureBuilder = require('../../fixture-builder');
+const {
   withFixtures,
+  openDapp,
   DAPP_URL,
   DAPP_ONE_URL,
+  regularDelayMs,
   WINDOW_TITLES,
-} from '../../helpers';
-import { loginWithBalanceValidation } from '../../page-objects/flows/login.flow';
-import TestDapp from '../../page-objects/pages/test-dapp';
-import TransactionConfirmation from '../../page-objects/pages/confirmations/redesign/transaction-confirmation';
-import SignTypedDataConfirmation from '../../page-objects/pages/confirmations/redesign/sign-typed-data-confirmation';
-import { Driver } from '../../webdriver/driver';
+  largeDelayMs,
+} = require('../../helpers');
+const {
+  loginWithBalanceValidation,
+} = require('../../page-objects/flows/login.flow');
 
 describe('Request Queuing Dapp 1, Switch Tx -> Dapp 2 Send Tx', function () {
   it('should queue signTypedData tx after eth_sendTransaction confirmation and signTypedData confirmation should target the correct network after eth_sendTransaction is confirmed', async function () {
@@ -42,28 +43,38 @@ describe('Request Queuing Dapp 1, Switch Tx -> Dapp 2 Send Tx', function () {
             },
           },
         ],
-        title: this.test?.fullTitle(),
+        title: this.test.fullTitle(),
       },
-      async ({ driver }: { driver: Driver }) => {
+      async ({ driver }) => {
         await loginWithBalanceValidation(driver);
 
         // Open and connect Dapp One
-        const testDappOne = new TestDapp(driver);
-        await testDappOne.openTestDappPage({ url: DAPP_URL });
-        await testDappOne.checkPageIsLoaded();
-        await testDappOne.connectAccount({});
+        await openDapp(driver, undefined, DAPP_URL);
 
+        await driver.clickElement({ text: 'Connect', tag: 'button' });
+
+        await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
+
+        await driver.clickElementAndWaitForWindowToClose({
+          text: 'Connect',
+          tag: 'button',
+        });
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-
         // Open and connect to Dapp Two
-        const testDappTwo = new TestDapp(driver);
-        await testDappTwo.openTestDappPage({ url: DAPP_ONE_URL });
-        await testDappTwo.checkPageIsLoaded();
-        await testDappTwo.connectAccount({});
+        await openDapp(driver, undefined, DAPP_ONE_URL);
+
+        await driver.clickElement({ text: 'Connect', tag: 'button' });
+
+        await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
+
+        await driver.clickElementAndWaitForWindowToClose({
+          text: 'Connect',
+          tag: 'button',
+        });
 
         // Switch Dapp Two to Localhost 8546
         await driver.switchToWindowWithUrl(DAPP_ONE_URL);
-        const switchEthereumChainRequest = JSON.stringify({
+        let switchEthereumChainRequest = JSON.stringify({
           jsonrpc: '2.0',
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x53a' }],
@@ -74,7 +85,10 @@ describe('Request Queuing Dapp 1, Switch Tx -> Dapp 2 Send Tx', function () {
           `window.ethereum.request(${switchEthereumChainRequest})`,
         );
 
-        await testDappTwo.checkNetworkIsConnected('0x53a');
+        await driver.waitForSelector({
+          css: '[id="chainId"]',
+          text: '0x53a',
+        });
 
         // Should auto switch without prompt since already approved via connect
 
@@ -82,7 +96,7 @@ describe('Request Queuing Dapp 1, Switch Tx -> Dapp 2 Send Tx', function () {
         await driver.switchToWindowWithUrl(DAPP_URL);
 
         // switch chain for Dapp One
-        const switchEthereumChainRequestDappOne = JSON.stringify({
+        switchEthereumChainRequest = JSON.stringify({
           jsonrpc: '2.0',
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x3e8' }],
@@ -90,38 +104,48 @@ describe('Request Queuing Dapp 1, Switch Tx -> Dapp 2 Send Tx', function () {
 
         // Initiate switchEthereumChain on Dapp one
         await driver.executeScript(
-          `window.ethereum.request(${switchEthereumChainRequestDappOne})`,
+          `window.ethereum.request(${switchEthereumChainRequest})`,
         );
-        await testDappOne.checkNetworkIsConnected('0x3e8');
+        await driver.waitForSelector({
+          css: '[id="chainId"]',
+          text: '0x3e8',
+        });
         // Should auto switch without prompt since already approved via connect
 
         await driver.switchToWindowWithUrl(DAPP_URL);
 
         // eth_sendTransaction request
-        await testDappOne.clickSimpleSendButton();
+        await driver.clickElement('#sendButton');
+        await driver.waitUntilXWindowHandles(4);
 
         await driver.switchToWindowWithUrl(DAPP_ONE_URL);
 
         // signTypedData request
-        await testDappTwo.clickSignTypedData();
+        await driver.clickElement('#signTypedData');
 
+        await driver.waitUntilXWindowHandles(4);
+        await driver.delay(regularDelayMs);
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
         // Check correct network on the send confirmation.
-        const transactionConfirmation = new TransactionConfirmation(driver);
-        await transactionConfirmation.checkNetworkIsDisplayed('Localhost 7777');
+        await driver.waitForSelector({
+          css: 'p',
+          text: 'Localhost 7777',
+        });
 
-        await transactionConfirmation.clickFooterConfirmButton();
+        await driver.clickElement({ text: 'Confirm', tag: 'button' });
 
+        await driver.delay(largeDelayMs);
+        await driver.waitUntilXWindowHandles(4);
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
         // Check correct network on the signTypedData confirmation.
-        const signTypedDataConfirmation = new SignTypedDataConfirmation(driver);
-        await signTypedDataConfirmation.checkNetworkIsDisplayed(
-          'Localhost 8546',
-        );
+        await driver.waitForSelector({
+          css: 'p',
+          text: 'Localhost 8546',
+        });
 
-        await signTypedDataConfirmation.clickFooterCancelButton();
+        await driver.clickElement({ text: 'Cancel', tag: 'button' });
       },
     );
   });

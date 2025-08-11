@@ -75,14 +75,14 @@ export const addAccountInWalletAndAuthorize = async (
 ): Promise<void> => {
   console.log('Adding account in wallet and authorizing');
   const connectAccountConfirmation = new ConnectAccountConfirmation(driver);
-  await connectAccountConfirmation.checkPageIsLoaded();
+  await connectAccountConfirmation.check_pageIsLoaded();
   await connectAccountConfirmation.openEditAccountsModal();
 
   const editConnectedAccountsModal = new EditConnectedAccountsModal(driver);
-  await editConnectedAccountsModal.checkPageIsLoaded();
+  await editConnectedAccountsModal.check_pageIsLoaded();
   await editConnectedAccountsModal.addNewEthereumAccount();
 
-  await connectAccountConfirmation.checkPageIsLoaded();
+  await connectAccountConfirmation.check_pageIsLoaded();
   await connectAccountConfirmation.confirmConnect();
 };
 

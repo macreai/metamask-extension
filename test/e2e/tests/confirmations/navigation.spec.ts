@@ -60,7 +60,7 @@ describe('Confirmation Navigation', function (this: Suite) {
         await confirmation.clickNextPage();
 
         // Verify simple send transaction is displayed
-        await confirmation.checkDappInitiatedHeadingTitle();
+        await confirmation.check_dappInitiatedHeadingTitle();
 
         await confirmation.clickNextPage();
 
@@ -70,7 +70,7 @@ describe('Confirmation Navigation', function (this: Suite) {
         await confirmation.clickPreviousPage();
 
         // Verify simple send transaction is displayed
-        await confirmation.checkDappInitiatedHeadingTitle();
+        await confirmation.check_dappInitiatedHeadingTitle();
 
         await confirmation.clickPreviousPage();
 
@@ -94,9 +94,13 @@ describe('Confirmation Navigation', function (this: Suite) {
         await confirmation.clickRejectAll();
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
-        await testDapp.checkFailedSignTypedData('User rejected the request.');
-        await testDapp.checkFailedSignTypedDataV3('User rejected the request.');
-        await testDapp.checkFailedSignTypedDataV4('User rejected the request.');
+        await testDapp.check_failedSignTypedData('User rejected the request.');
+        await testDapp.check_failedSignTypedDataV3(
+          'User rejected the request.',
+        );
+        await testDapp.check_failedSignTypedDataV4(
+          'User rejected the request.',
+        );
       },
     );
   });
@@ -121,23 +125,23 @@ describe('Confirmation Navigation', function (this: Suite) {
 
         const confirmation = new TransactionConfirmation(driver);
         const signTypedDataConfirmation = new SignTypedData(driver);
-        await confirmation.checkPageNumbers(1, 3);
+        await confirmation.check_pageNumbers(1, 3);
         await confirmation.verifyConfirmationHeadingTitle();
 
         await confirmation.clickNextPage();
-        await confirmation.checkPageNumbers(2, 3);
+        await confirmation.check_pageNumbers(2, 3);
         await signTypedDataConfirmation.verifyConfirmationHeadingTitle();
 
         await confirmation.clickNextPage();
-        await confirmation.checkPageNumbers(3, 3);
-        await confirmation.checkDappInitiatedHeadingTitle();
+        await confirmation.check_pageNumbers(3, 3);
+        await confirmation.check_dappInitiatedHeadingTitle();
 
         await confirmation.clickPreviousPage();
-        await confirmation.checkPageNumbers(2, 3);
+        await confirmation.check_pageNumbers(2, 3);
         await signTypedDataConfirmation.verifyConfirmationHeadingTitle();
 
         await confirmation.clickPreviousPage();
-        await confirmation.checkPageNumbers(1, 3);
+        await confirmation.check_pageNumbers(1, 3);
         await confirmation.verifyConfirmationHeadingTitle();
       },
     );
@@ -178,14 +182,14 @@ async function queueSignatures(driver: Driver) {
   // Sign Typed Data V3
   await testDapp.clickSignTypedDatav3();
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await confirmation.checkPageNumbers(1, 2);
+  await confirmation.check_pageNumbers(1, 2);
 
   await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
 
   // Sign Typed Data V4
   await testDapp.clickSignTypedDatav4();
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await confirmation.checkPageNumbers(1, 3);
+  await confirmation.check_pageNumbers(1, 3);
 }
 
 async function queueSignaturesAndTransactions(driver: Driver) {
@@ -202,12 +206,12 @@ async function queueSignaturesAndTransactions(driver: Driver) {
   // Send Transaction
   await testDapp.clickSimpleSendButton();
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await confirmation.checkPageNumbers(1, 2);
+  await confirmation.check_pageNumbers(1, 2);
 
   await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
 
   // Sign Typed Data V3
   await testDapp.clickSignTypedDatav3();
   await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-  await confirmation.checkPageNumbers(1, 3);
+  await confirmation.check_pageNumbers(1, 3);
 }

@@ -16,7 +16,9 @@ class SnapTxInsights {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.insightTitle,
@@ -34,12 +36,16 @@ class SnapTxInsights {
     );
   }
 
-  async checkTransactionInsightsTitle() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionInsightsTitle() {
     console.log('Checking transaction insights title');
     await this.driver.waitForSelector(this.insightTitle);
   }
 
-  async checkTransactionInsightsType(transactionType: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionInsightsType(transactionType: string) {
     console.log('Checking transaction insights type');
     await this.driver.waitForSelector({
       css: this.transactionType,
@@ -47,7 +53,9 @@ class SnapTxInsights {
     });
   }
 
-  async checkTransactionAddress(address: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_transactionAddress(address: string) {
     console.log('Checking transaction address');
     await this.driver.waitForSelector({
       css: this.transactionAddress,

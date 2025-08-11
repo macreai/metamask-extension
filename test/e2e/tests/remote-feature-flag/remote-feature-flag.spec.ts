@@ -71,11 +71,11 @@ describe('Remote feature flag', function (this: Suite) {
         const headerNavbar = new HeaderNavbar(driver);
         await headerNavbar.openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.goToDeveloperOptions();
 
         const developOptionsPage = new DevelopOptions(driver);
-        await developOptionsPage.checkPageIsLoaded();
+        await developOptionsPage.check_pageIsLoaded();
         await developOptionsPage.validateRemoteFeatureFlagState();
       },
     );

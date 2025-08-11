@@ -15,8 +15,10 @@ class NonEvmHomepage extends HomePage {
 
   protected readonly bridgeButton = '[data-testid="coin-overview-bridge"]';
 
-  async checkPageIsLoaded(amount: string = ''): Promise<void> {
-    await super.checkPageIsLoaded();
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(amount: string = ''): Promise<void> {
+    await super.check_pageIsLoaded();
     await this.driver.delay(regularDelayMs); // workaround to avoid flakiness
     if (amount) {
       await this.driver.wait(async () => {
@@ -59,7 +61,12 @@ class NonEvmHomepage extends HomePage {
    * @param balance
    * @param token
    */
-  async checkGetBalance(balance: string, token: string = 'SOL'): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_getBalance(
+    balance: string,
+    token: string = 'SOL',
+  ): Promise<void> {
     await this.driver.waitForSelector(
       {
         text: balance,
@@ -80,7 +87,9 @@ class NonEvmHomepage extends HomePage {
   /**
    * Checks if the receive button is enabled on a non-evm account homepage.
    */
-  async checkIsReceiveButtonEnabled(): Promise<boolean> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_isReceiveButtonEnabled(): Promise<boolean> {
     try {
       await this.driver.waitForSelector(this.receiveButton, { timeout: 5000 });
     } catch (e) {
@@ -94,7 +103,9 @@ class NonEvmHomepage extends HomePage {
   /**
    * Checks if the buy/sell button is enabled on a non-evm account homepage.
    */
-  async checkIfBuySellButtonIsClickable(): Promise<boolean> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_ifBuySellButtonIsClickable(): Promise<boolean> {
     try {
       await this.driver.waitForSelector(this.buySellButton, { timeout: 5000 });
       const buySellButton = await this.driver.findClickableElement(

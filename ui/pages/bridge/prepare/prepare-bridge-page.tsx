@@ -320,7 +320,7 @@ const PrepareBridgePage = ({
           };
         })()
       : null,
-    selectedDestinationAccount && 'id' in selectedDestinationAccount
+    selectedDestinationAccount !== null && 'id' in selectedDestinationAccount
       ? selectedDestinationAccount.id
       : undefined,
   );

@@ -26,7 +26,9 @@ class AboutPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.aboutPageTitle,
@@ -45,7 +47,9 @@ class AboutPage {
    *
    * @param version - The expected version
    */
-  async checkMetaMaskVersionNumber(version: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_metaMaskVersionNumber(version: string): Promise<void> {
     console.log('Checking displayed MetaMask version is ', version);
     await this.driver.waitForSelector({
       css: this.metaMaskVersionNumber.css,

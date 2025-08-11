@@ -45,7 +45,9 @@ class NotificationsSettingsPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.notificationsSettingsPageTitle,
@@ -67,7 +69,9 @@ class NotificationsSettingsPage {
     await this.driver.waitForSelector(this.notificationToggleOff);
   }
 
-  async checkNotificationSectionIsHidden(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_notificationSectionIsHidden(): Promise<void> {
     console.log('Checking if notifications section is hidden');
     const selectors = [
       this.allowProductAnnouncementToggle,
@@ -97,7 +101,9 @@ class NotificationsSettingsPage {
    * @param options.expectedState - The expected state of the toggle ('enabled' or 'disabled')
    * @throws {Error} If toggle state doesn't match expected state or if the toggle element cannot be found
    */
-  async checkNotificationState({
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_notificationState({
     toggleType,
     address,
     expectedState,
@@ -220,12 +226,12 @@ class NotificationsSettingsPage {
 
   async assertMainNotificationSettingsTogglesEnabled(driver: Driver) {
     const notificationsSettingsPage = new NotificationsSettingsPage(driver);
-    await notificationsSettingsPage.checkPageIsLoaded();
-    await notificationsSettingsPage.checkNotificationState({
+    await notificationsSettingsPage.check_pageIsLoaded();
+    await notificationsSettingsPage.check_notificationState({
       toggleType: 'general',
       expectedState: 'enabled',
     });
-    await notificationsSettingsPage.checkNotificationState({
+    await notificationsSettingsPage.check_notificationState({
       toggleType: 'product',
       expectedState: 'enabled',
     });

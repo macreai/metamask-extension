@@ -86,9 +86,6 @@ function createSegmentServer(onRequest, onError = defaultOnError) {
           }
           return resolve();
         });
-        // We need to close all connections to stop the server quickly
-        // Otherwise it takes a few seconds for it to close
-        server.closeAllConnections();
       });
     },
   };

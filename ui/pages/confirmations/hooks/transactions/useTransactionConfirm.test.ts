@@ -1,8 +1,4 @@
-import {
-  GasFeeToken,
-  TransactionMeta,
-  TransactionType,
-} from '@metamask/transaction-controller';
+import { GasFeeToken, TransactionMeta } from '@metamask/transaction-controller';
 import { Hex } from '@metamask/utils';
 import { genUnapprovedContractInteractionConfirmation } from '../../../../../test/data/confirmations/contract-interaction';
 import { getMockConfirmStateForTransaction } from '../../../../../test/data/confirmations/helper';
@@ -110,7 +106,6 @@ describe('useTransactionConfirm', () => {
         maxFeePerGas: GAS_FEE_TOKEN_MOCK.maxFeePerGas,
         maxPriorityFeePerGas: GAS_FEE_TOKEN_MOCK.maxPriorityFeePerGas,
         to: GAS_FEE_TOKEN_MOCK.tokenAddress,
-        type: TransactionType.gasPayment,
       },
     ]);
   });

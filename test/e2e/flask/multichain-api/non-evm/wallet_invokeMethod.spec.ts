@@ -1,11 +1,12 @@
 import { strict as assert } from 'assert';
 import { isObject } from 'lodash';
-import { WINDOW_TITLES } from '../../../helpers';
+import { largeDelayMs, WINDOW_TITLES } from '../../../helpers';
 import TestDappMultichain from '../../../page-objects/pages/test-dapp-multichain';
-import { DEFAULT_MULTICHAIN_TEST_DAPP_FIXTURE_OPTIONS } from '../testHelpers';
+import {
+  DEFAULT_MULTICHAIN_TEST_DAPP_FIXTURE_OPTIONS,
+  replaceColon,
+} from '../testHelpers';
 import { withSolanaAccountSnap } from '../../../tests/solana/common-solana';
-import SnapTransactionConfirmation from '../../../page-objects/pages/confirmations/redesign/snap-transaction-confirmation';
-import SnapSignInConfirmation from '../../../page-objects/pages/confirmations/redesign/snap-sign-in-confirmation';
 
 describe('Multichain API - Non EVM', function () {
   const SOLANA_SCOPE = 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
@@ -38,10 +39,24 @@ describe('Multichain API - Non EVM', function () {
 
             await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
-            const confirmation = new SnapSignInConfirmation(driver);
-            await confirmation.checkPageIsLoaded();
-            await confirmation.checkAccountIsDisplayed('Solana 1');
-            await confirmation.clickFooterConfirmButton();
+            const expectedAccount = 'Solana 1';
+
+            await driver.waitForSelector({
+              text: 'Sign-in request',
+              tag: 'h2',
+            });
+
+            await driver.waitForSelector({
+              tesId: 'snap-ui-address',
+              text: expectedAccount,
+            });
+
+            const confirmButton = await driver.waitForSelector({
+              testId: 'confirm-sign-in-confirm-snap-footer-button',
+              text: 'Confirm',
+            });
+
+            await confirmButton.click();
           },
         );
       });
@@ -70,28 +85,54 @@ describe('Multichain API - Non EVM', function () {
             );
 
             const invokeMethod = 'signAndSendTransaction';
+            await driver.clickElementSafe(
+              `[data-testid="${replaceColon(
+                SOLANA_SCOPE,
+              )}-${invokeMethod}-option"]`,
+            );
 
-            await testDapp.invokeMethod({
-              scope: SOLANA_SCOPE,
-              method: invokeMethod,
-            });
+            await driver.delay(largeDelayMs);
+
+            await driver.clickElementSafe(
+              `[data-testid="invoke-method-${replaceColon(SOLANA_SCOPE)}-btn"]`,
+            );
 
             await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
-            const confirmation = new SnapTransactionConfirmation(driver);
-            await confirmation.checkPageIsLoaded();
-            await confirmation.checkAccountIsDisplayed('Solana 1');
-            await confirmation.clickFooterConfirmButton();
+            const expectedAccount = 'Solana 1';
+
+            await driver.waitForSelector({
+              text: 'Transaction request',
+              tag: 'h2',
+            });
+
+            await driver.waitForSelector({
+              tesId: 'snap-ui-address',
+              text: expectedAccount,
+            });
+
+            const confirmButton = await driver.waitForSelector({
+              testId:
+                'confirm-sign-and-send-transaction-confirm-snap-footer-button',
+              text: 'Confirm',
+            });
+
+            await driver.delay(largeDelayMs);
+
+            await confirmButton.click();
 
             await driver.switchToWindowWithTitle(
               WINDOW_TITLES.MultichainTestDApp,
             );
 
-            const transactionResult = await testDapp.getInvokeMethodResult({
-              scope: SOLANA_SCOPE,
-              method: invokeMethod,
-            });
-            const parsedTransactionResult = JSON.parse(transactionResult);
+            const resultWebElement = await driver.findElement(
+              `#invoke-method-${replaceColon(
+                SOLANA_SCOPE,
+              )}-${invokeMethod}-result-0`,
+            );
+            const parsedTransactionResult = JSON.parse(
+              await resultWebElement.getText(),
+            );
 
             assert.strictEqual(
               isObject(parsedTransactionResult),

@@ -32,10 +32,10 @@ describe('Change assets', function () {
         const sendTokenConfirmationPage = new SendTokenConfirmPage(driver);
         const activityListPage = new ActivityListPage(driver);
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.startSendFlow();
 
-        await sendTokenPage.checkPageIsLoaded();
+        await sendTokenPage.check_pageIsLoaded();
         await accountListPage.selectAccount('Account 1');
 
         await sendTokenPage.fillAmount('2');
@@ -44,18 +44,18 @@ describe('Change assets', function () {
         await sendTokenPage.clickAssetPickerButton();
         await sendTokenPage.chooseAssetTypeToSend('nft');
         await sendTokenPage.chooseNFTToSend();
-        await sendTokenPage.checkTokenSymbolInAssetPicker('TDN', '1');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('TDN', '1');
         await sendTokenPage.clickContinueButton();
 
-        await sendTokenConfirmationPage.checkPageIsLoaded();
-        await sendTokenConfirmationPage.checkNftTransfer({
+        await sendTokenConfirmationPage.check_pageIsLoaded();
+        await sendTokenConfirmationPage.check_nftTransfer({
           sender: 'Account 1',
           recipient: 'Account 1',
           nftName: 'Test Dapp NFTs #1',
         });
         await sendTokenConfirmationPage.clickOnConfirm();
 
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           'Sent Test Dapp NFTs #1',
         );
       },
@@ -85,11 +85,11 @@ describe('Change assets', function () {
         const activityListPage = new ActivityListPage(driver);
         const assetListPage = new AssetListPage(driver);
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await assetListPage.clickOnAsset('TST');
         await homePage.startSendFlow();
 
-        await sendTokenPage.checkPageIsLoaded();
+        await sendTokenPage.check_pageIsLoaded();
         await accountListPage.selectAccount('Account 1');
         await sendTokenPage.fillAmount('2');
         await sendTokenPage.clickContinueButton();
@@ -97,18 +97,18 @@ describe('Change assets', function () {
         await sendTokenPage.clickAssetPickerButton();
         await sendTokenPage.chooseAssetTypeToSend('nft');
         await sendTokenPage.chooseNFTToSend();
-        await sendTokenPage.checkTokenSymbolInAssetPicker('TDN', '1');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('TDN', '1');
         await sendTokenPage.clickContinueButton();
 
-        await sendTokenConfirmationPage.checkPageIsLoaded();
-        await sendTokenConfirmationPage.checkNftTransfer({
+        await sendTokenConfirmationPage.check_pageIsLoaded();
+        await sendTokenConfirmationPage.check_nftTransfer({
           sender: 'Account 1',
           recipient: 'Account 1',
           nftName: 'Test Dapp NFTs #1',
         });
         await sendTokenConfirmationPage.clickOnConfirm();
 
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           'Sent Test Dapp NFTs #1',
         );
       },
@@ -135,25 +135,25 @@ describe('Change assets', function () {
         const activityListPage = new ActivityListPage(driver);
         const nftListPage = new NftListPage(driver);
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.goToNftTab();
         await nftListPage.clickNFTFromList();
-        await nftDetailsPage.checkPageIsLoaded();
+        await nftDetailsPage.check_pageIsLoaded();
         await nftDetailsPage.clickNFTSendButton();
-        await sendTokenPage.checkPageIsLoaded();
+        await sendTokenPage.check_pageIsLoaded();
         await accountListPage.selectAccount('Account 1');
-        await sendTokenPage.checkTokenSymbolInAssetPicker('TDN', '1');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('TDN', '1');
         await sendTokenPage.clickContinueButton();
         await sendTokenPage.goToPreviousScreen();
         await sendTokenPage.clickAssetPickerButton();
         await sendTokenPage.chooseAssetTypeToSend('token');
         await sendTokenPage.chooseTokenToSend('ETH');
-        await sendTokenPage.checkTokenSymbolInAssetPicker('ETH');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('ETH');
         await sendTokenPage.fillAmount('2');
         await sendTokenPage.clickContinueButton();
 
-        await sendTokenConfirmationPage.checkPageIsLoaded();
-        await sendTokenConfirmationPage.checkTokenTransfer({
+        await sendTokenConfirmationPage.check_pageIsLoaded();
+        await sendTokenConfirmationPage.check_tokenTransfer({
           sender: 'Account 1',
           recipient: 'Account 1',
           tokenName: 'ETH',
@@ -161,8 +161,8 @@ describe('Change assets', function () {
         });
         await sendTokenConfirmationPage.clickOnConfirm();
 
-        await activityListPage.checkTransactionActivityByText('Sent');
-        await activityListPage.checkTxAmountInActivity('-2 ETH');
+        await activityListPage.check_transactionActivityByText('Sent');
+        await activityListPage.check_txAmountInActivity('-2 ETH');
       },
     );
   });
@@ -195,39 +195,39 @@ describe('Change assets', function () {
         const activityListPage = new ActivityListPage(driver);
         const nftListPage = new NftListPage(driver);
 
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await headerNavbar.openAccountMenu();
 
         // Create new account with default name `newAccountName`
         const newAccountName = 'Account 2';
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.addAccount({
           accountType: ACCOUNT_TYPE.Ethereum,
         });
-        await headerNavbar.checkAccountLabel(newAccountName);
+        await headerNavbar.check_accountLabel(newAccountName);
 
         // Switch back to the first account
         await headerNavbar.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
         await accountListPage.switchToAccount('Account 1');
-        await headerNavbar.checkAccountLabel('Account 1');
+        await headerNavbar.check_accountLabel('Account 1');
 
         // Choose the nft
         await homePage.goToNftTab();
         await nftListPage.clickNFTFromList();
-        await nftDetailsPage.checkPageIsLoaded();
+        await nftDetailsPage.check_pageIsLoaded();
         await nftDetailsPage.clickNFTSendButton();
 
         // Switch accounts during send flow and check that native currency is selected
-        await sendTokenPage.checkPageIsLoaded();
+        await sendTokenPage.check_pageIsLoaded();
         await accountListPage.selectAccount('Account 1');
-        await sendTokenPage.checkTokenSymbolInAssetPicker('TDN', '1');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('TDN', '1');
         await sendTokenPage.clickAccountPickerButton();
         await accountListPage.selectAccount('Account 2');
-        await sendTokenPage.checkTokenSymbolInAssetPicker('ETH');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('ETH');
         await sendTokenPage.clickAccountPickerButton();
         await accountListPage.selectAccount('Account 1');
-        await sendTokenPage.checkTokenSymbolInAssetPicker('ETH');
+        await sendTokenPage.check_tokenSymbolInAssetPicker('ETH');
         await sendTokenPage.fillAmount('2');
 
         // Make sure hex data is cleared after switching assets
@@ -243,8 +243,8 @@ describe('Change assets', function () {
         await sendTokenPage.fillHexInput('0x');
         await sendTokenPage.clickContinueButton();
 
-        await sendTokenConfirmationPage.checkPageIsLoaded();
-        await sendTokenConfirmationPage.checkTokenTransfer({
+        await sendTokenConfirmationPage.check_pageIsLoaded();
+        await sendTokenConfirmationPage.check_tokenTransfer({
           sender: 'Account 1',
           recipient: 'Account 1',
           tokenName: 'ETH',
@@ -252,8 +252,8 @@ describe('Change assets', function () {
         });
         await sendTokenConfirmationPage.clickOnConfirm();
 
-        await activityListPage.checkTransactionActivityByText('Sent');
-        await activityListPage.checkTxAmountInActivity('-2 ETH');
+        await activityListPage.check_transactionActivityByText('Sent');
+        await activityListPage.check_txAmountInActivity('-2 ETH');
       },
     );
   });

@@ -57,10 +57,10 @@ describe('State logs', function () {
         // Download state logs
         await new HeaderNavbar(driver).openSettingsPage();
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.clickAdvancedTab();
         const advancedSettingsPage = new AdvancedSettings(driver);
-        await advancedSettingsPage.checkPageIsLoaded();
+        await advancedSettingsPage.check_pageIsLoaded();
         await advancedSettingsPage.downloadStateLogs();
 
         // Verify download

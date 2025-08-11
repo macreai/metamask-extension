@@ -47,10 +47,10 @@ describe('Migrate vault with old encryption', function (this: Suite) {
         );
 
         const headerNavbar = new HeaderNavbar(driver);
-        await headerNavbar.checkPageIsLoaded();
+        await headerNavbar.check_pageIsLoaded();
         await headerNavbar.lockMetaMask();
         const loginPage = new LoginPage(driver);
-        await loginPage.checkPageIsLoaded();
+        await loginPage.check_pageIsLoaded();
         await loginWithBalanceValidation(driver);
       },
     );

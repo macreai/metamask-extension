@@ -10,7 +10,6 @@ async function buildWebDriver({
   port,
   timeOut,
   proxyPort,
-  disableServerMochaToBackground,
 } = {}) {
   const browser = process.env.SELENIUM_BROWSER;
 
@@ -25,13 +24,7 @@ async function buildWebDriver({
     constrainWindowSize,
     proxyPort,
   });
-  const driver = new Driver({
-    driver: seleniumDriver,
-    browser,
-    extensionUrl,
-    timeout: timeOut,
-    disableServerMochaToBackground,
-  });
+  const driver = new Driver(seleniumDriver, browser, extensionUrl, timeOut);
 
   return {
     driver,

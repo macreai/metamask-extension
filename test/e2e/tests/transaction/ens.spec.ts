@@ -95,23 +95,23 @@ describe('ENS', function (this: Suite) {
 
         // click send button on homepage to start send flow
         const homepage = new HomePage(driver);
-        await homepage.checkPageIsLoaded();
-        await homepage.checkExpectedBalanceIsDisplayed('20');
+        await homepage.check_pageIsLoaded();
+        await homepage.check_expectedBalanceIsDisplayed('20');
         await homepage.startSendFlow();
 
         // fill ens address as recipient when user lands on send token screen
         const sendToPage = new SendTokenPage(driver);
-        await sendToPage.checkPageIsLoaded();
+        await sendToPage.check_pageIsLoaded();
         await sendToPage.fillRecipient(sampleEnsDomain);
 
         // verify that ens domain resolves to the correct address
-        await sendToPage.checkEnsAddressResolution(
+        await sendToPage.check_ensAddressResolution(
           sampleEnsDomain,
           shortSampleAddress,
         );
 
         // Verify the resolved ENS address can be used as the recipient address
-        await sendToPage.checkEnsAddressAsRecipient(
+        await sendToPage.check_ensAddressAsRecipient(
           sampleEnsDomain,
           shortSampleAddress,
         );

@@ -41,20 +41,20 @@ describe('Transfer custom tokens', function () {
             new TokenTransferTransactionConfirmation(driver);
           const activityListPage = new ActivityListPage(driver);
 
-          await homePage.checkPageIsLoaded();
+          await homePage.check_pageIsLoaded();
 
           // go to custom tokens view on extension, perform send tokens
           await assetListPage.openTokenDetails(symbol);
           await assetListPage.clickSendButton();
 
-          await sendTokenPage.checkPageIsLoaded();
+          await sendTokenPage.check_pageIsLoaded();
           await sendTokenPage.fillRecipient(recipientAddress);
           await sendTokenPage.fillAmount('1');
           await sendTokenPage.clickContinueButton();
 
           // check transaction details
           const expectedNetworkFee = '0.0001';
-          await tokenTransferRedesignedConfirmPage.checkTokenTransferPageIsLoaded(
+          await tokenTransferRedesignedConfirmPage.check_tokenTransferPageIsLoaded(
             '1',
             symbol,
             expectedNetworkFee,
@@ -68,8 +68,10 @@ describe('Transfer custom tokens', function () {
           await tokenTransferRedesignedConfirmPage.clickConfirmButton();
 
           // check that transaction has completed correctly and is displayed in the activity list
-          await activityListPage.checkTxAction(`Sent ${symbol}`);
-          await activityListPage.checkTxAmountInActivity(valueWithSymbol('-1'));
+          await activityListPage.check_txAction(`Sent ${symbol}`);
+          await activityListPage.check_txAmountInActivity(
+            valueWithSymbol('-1'),
+          );
         },
       );
     });
@@ -101,14 +103,14 @@ describe('Transfer custom tokens', function () {
 
           // transfer token from dapp
           await openDapp(driver, contractAddress);
-          await testDapp.checkPageIsLoaded();
+          await testDapp.check_pageIsLoaded();
           await testDapp.clickTransferTokens();
 
           await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
           // check transaction details
           const expectedNetworkFee = '0.0001';
-          await tokenTransferRedesignedConfirmPage.checkTokenTransferPageIsLoaded(
+          await tokenTransferRedesignedConfirmPage.check_tokenTransferPageIsLoaded(
             '1.5',
             symbol,
             expectedNetworkFee,
@@ -127,14 +129,14 @@ describe('Transfer custom tokens', function () {
           );
 
           await homePage.goToActivityList();
-          await activityListPage.checkTxAction(`Sent ${symbol}`);
-          await activityListPage.checkTxAmountInActivity(
+          await activityListPage.check_txAction(`Sent ${symbol}`);
+          await activityListPage.check_txAmountInActivity(
             valueWithSymbol('-1.5'),
           );
 
           // check token amount is correct after transaction
           await homePage.goToTokensTab();
-          await assetListPage.checkTokenExistsInList(
+          await assetListPage.check_tokenExistsInList(
             symbol,
             valueWithSymbol('8.5'),
           );
@@ -168,14 +170,14 @@ describe('Transfer custom tokens', function () {
 
           // transfer token from dapp
           await openDapp(driver, contractAddress);
-          await testDapp.checkPageIsLoaded();
+          await testDapp.check_pageIsLoaded();
           await testDapp.clickTransferTokensWithoutGas();
 
           await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
           // check transaction details and confirm
           const expectedNetworkFee = '0.001';
-          await tokenTransferRedesignedConfirmPage.checkTokenTransferPageIsLoaded(
+          await tokenTransferRedesignedConfirmPage.check_tokenTransferPageIsLoaded(
             '1.5',
             symbol,
             expectedNetworkFee,
@@ -188,14 +190,14 @@ describe('Transfer custom tokens', function () {
           );
 
           await homePage.goToActivityList();
-          await activityListPage.checkTxAction(`Sent ${symbol}`);
-          await activityListPage.checkTxAmountInActivity(
+          await activityListPage.check_txAction(`Sent ${symbol}`);
+          await activityListPage.check_txAmountInActivity(
             valueWithSymbol('-1.5'),
           );
 
           // check token amount is correct after transaction
           await homePage.goToTokensTab();
-          await assetListPage.checkTokenExistsInList(
+          await assetListPage.check_tokenExistsInList(
             symbol,
             valueWithSymbol('8.5'),
           );

@@ -6,21 +6,19 @@ import BitcoinHomepage from '../../page-objects/pages/home/bitcoin-homepage';
 import BitcoinReviewTxPage from '../../page-objects/pages/send/bitcoin-review-tx-page';
 import { withBtcAccountSnap } from './common-btc';
 
-// To be reactivated once we use a regtest network instead of mocked data
-// eslint-disable-next-line mocha/no-skipped-tests
-describe.skip('BTC Account - Send', function (this: Suite) {
+describe('BTC Account - Send', function (this: Suite) {
   const recipientAddress = 'bc1qsqvczpxkgvp3lw230p7jffuuqnw9pp4j5tawmf';
   it('fields validation', async function () {
     await withBtcAccountSnap(async (driver) => {
       const homePage = new BitcoinHomepage(driver);
-      await homePage.checkPageIsLoaded();
-      await homePage.checkIsExpectedBitcoinBalanceDisplayed(
+      await homePage.check_pageIsLoaded();
+      await homePage.check_isExpectedBitcoinBalanceDisplayed(
         DEFAULT_BTC_BALANCE,
       );
       await homePage.startSendFlow();
 
       const bitcoinSendPage = new BitcoinSendPage(driver);
-      await bitcoinSendPage.checkPageIsLoaded();
+      await bitcoinSendPage.check_pageIsLoaded();
       assert.equal(await bitcoinSendPage.checkAssetPickerIsDisplayed(), false);
       assert.equal(await bitcoinSendPage.checkAmountFieldIsDisplayed(), false);
       await bitcoinSendPage.fillRecipientAddress('invalidBTCAddress');
@@ -59,14 +57,14 @@ describe.skip('BTC Account - Send', function (this: Suite) {
 
     await withBtcAccountSnap(async (driver) => {
       const homePage = new BitcoinHomepage(driver);
-      await homePage.checkPageIsLoaded();
-      await homePage.checkIsExpectedBitcoinBalanceDisplayed(
+      await homePage.check_pageIsLoaded();
+      await homePage.check_isExpectedBitcoinBalanceDisplayed(
         DEFAULT_BTC_BALANCE,
       );
       await homePage.startSendFlow();
 
       const bitcoinSendPage = new BitcoinSendPage(driver);
-      await bitcoinSendPage.checkPageIsLoaded();
+      await bitcoinSendPage.check_pageIsLoaded();
       await bitcoinSendPage.fillRecipientAddress(recipientAddress);
       await bitcoinSendPage.fillAmount(sendAmount);
       await bitcoinSendPage.clickContinueButton();
@@ -75,17 +73,17 @@ describe.skip('BTC Account - Send', function (this: Suite) {
       // From here, we have moved to the confirmation screen (second part of the flow).
 
       const bitcoinReviewTxPage = new BitcoinReviewTxPage(driver);
-      await bitcoinReviewTxPage.checkPageIsLoaded();
-      await bitcoinReviewTxPage.checkSendAmountIsDisplayed(sendAmount);
-      await bitcoinReviewTxPage.checkNetworkFeeIsDisplayed(expectedFee);
-      await bitcoinReviewTxPage.checkFeeRateIsDisplayed(
+      await bitcoinReviewTxPage.check_pageIsLoaded();
+      await bitcoinReviewTxPage.check_sendAmountIsDisplayed(sendAmount);
+      await bitcoinReviewTxPage.check_networkFeeIsDisplayed(expectedFee);
+      await bitcoinReviewTxPage.check_feeRateIsDisplayed(
         Math.floor(DEFAULT_BTC_FEE_RATE).toString(),
       );
-      await bitcoinReviewTxPage.checkTotalAmountIsDisplayed(expectedTotal);
+      await bitcoinReviewTxPage.check_totalAmountIsDisplayed(expectedTotal);
       await bitcoinReviewTxPage.clickSendButton();
 
       // TODO: Test that the transaction appears in the activity tab once activity tab is implemented for Bitcoin
-      await homePage.checkPageIsLoaded();
+      await homePage.check_pageIsLoaded();
     }, this.test?.fullTitle());
   });
 
@@ -94,14 +92,14 @@ describe.skip('BTC Account - Send', function (this: Suite) {
 
     await withBtcAccountSnap(async (driver) => {
       const homePage = new BitcoinHomepage(driver);
-      await homePage.checkPageIsLoaded();
-      await homePage.checkIsExpectedBitcoinBalanceDisplayed(
+      await homePage.check_pageIsLoaded();
+      await homePage.check_isExpectedBitcoinBalanceDisplayed(
         DEFAULT_BTC_BALANCE,
       );
       await homePage.startSendFlow();
 
       const bitcoinSendPage = new BitcoinSendPage(driver);
-      await bitcoinSendPage.checkPageIsLoaded();
+      await bitcoinSendPage.check_pageIsLoaded();
       await bitcoinSendPage.fillRecipientAddress(recipientAddress);
       await bitcoinSendPage.selectMaxAmount();
       await bitcoinSendPage.clickContinueButton();
@@ -110,17 +108,17 @@ describe.skip('BTC Account - Send', function (this: Suite) {
       // From here, we have moved to the confirmation screen (second part of the flow).
 
       const bitcoinReviewTxPage = new BitcoinReviewTxPage(driver);
-      await bitcoinReviewTxPage.checkPageIsLoaded();
-      await bitcoinReviewTxPage.checkSendAmountIsDisplayed(
+      await bitcoinReviewTxPage.check_pageIsLoaded();
+      await bitcoinReviewTxPage.check_sendAmountIsDisplayed(
         (DEFAULT_BTC_BALANCE - expectedFee).toString(),
       );
-      await bitcoinReviewTxPage.checkTotalAmountIsDisplayed(
+      await bitcoinReviewTxPage.check_totalAmountIsDisplayed(
         DEFAULT_BTC_BALANCE.toString(),
       );
       await bitcoinReviewTxPage.clickSendButton();
 
       // TODO: Test that the transaction appears in the activity tab once activity tab is implemented for Bitcoin
-      await homePage.checkPageIsLoaded();
+      await homePage.check_pageIsLoaded();
     }, this.test?.fullTitle());
   });
 });

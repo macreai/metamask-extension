@@ -50,14 +50,14 @@ describe('Account syncing - Unsupported Account types', function () {
         await unlockWallet(driver);
 
         const header = new HeaderNavbar(driver);
-        await header.checkPageIsLoaded();
+        await header.check_pageIsLoaded();
         await header.openAccountMenu();
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Verify default account is visible
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
 
@@ -82,11 +82,11 @@ describe('Account syncing - Unsupported Account types', function () {
 
         // Reopen account menu to verify both regular accounts are visible
         await header.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountDisplayedInAccountList(
           DEFAULT_ACCOUNT_NAME,
         );
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_accountDisplayedInAccountList(
           SECOND_ACCOUNT_NAME,
         );
 
@@ -95,8 +95,8 @@ describe('Account syncing - Unsupported Account types', function () {
 
         // Verify imported account is visible in current session
         await header.openAccountMenu();
-        await accountListPage.checkPageIsLoaded();
-        await accountListPage.checkAccountDisplayedInAccountList(
+        await accountListPage.check_pageIsLoaded();
+        await accountListPage.check_accountDisplayedInAccountList(
           IMPORTED_ACCOUNT_NAME,
         );
 
@@ -115,26 +115,28 @@ describe('Account syncing - Unsupported Account types', function () {
         await unlockWallet(driver);
 
         const header = new HeaderNavbar(driver);
-        await header.checkPageIsLoaded();
+        await header.check_pageIsLoaded();
         await header.openAccountMenu();
 
         const accountListPage = new AccountListPage(driver);
-        await accountListPage.checkPageIsLoaded();
+        await accountListPage.check_pageIsLoaded();
 
         // Verify regular accounts are still visible (synced accounts)
         const visibleAccounts = [DEFAULT_ACCOUNT_NAME, SECOND_ACCOUNT_NAME];
 
         for (const accountName of visibleAccounts) {
-          await accountListPage.checkAccountDisplayedInAccountList(accountName);
+          await accountListPage.check_accountDisplayedInAccountList(
+            accountName,
+          );
         }
 
         // Verify imported account is NOT visible (not synced)
-        await accountListPage.checkAccountIsNotDisplayedInAccountList(
+        await accountListPage.check_accountIsNotDisplayedInAccountList(
           IMPORTED_ACCOUNT_NAME,
         );
 
         // Verify we only have 2 accounts (not 3)
-        await accountListPage.checkNumberOfAvailableAccounts(
+        await accountListPage.check_numberOfAvailableAccounts(
           2,
           ACCOUNT_TYPE.Ethereum,
         );

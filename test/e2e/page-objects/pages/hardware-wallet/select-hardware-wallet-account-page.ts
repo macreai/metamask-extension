@@ -22,7 +22,9 @@ class SelectHardwareWalletAccountPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.selectAccountPageTitle,
@@ -62,7 +64,9 @@ class SelectHardwareWalletAccountPage {
    *
    * @param address - The address to check for.
    */
-  async checkAddressIsDisplayed(address: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_addressIsDisplayed(address: string): Promise<void> {
     console.log(
       `Check that account address ${address} is displayed on select account page`,
     );
@@ -75,7 +79,9 @@ class SelectHardwareWalletAccountPage {
    * @param expectedNumber - The number of account items expected to be displayed. Defaults to 5.
    * @returns A promise that resolves if the expected number of account items is displayed.
    */
-  async checkAccountNumber(expectedNumber: number = 5): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_accountNumber(expectedNumber: number = 5): Promise<void> {
     console.log(`Waiting for ${expectedNumber} account items to be displayed`);
     await this.driver.wait(async () => {
       const accountItems = await this.driver.findElements(this.accountCheckbox);

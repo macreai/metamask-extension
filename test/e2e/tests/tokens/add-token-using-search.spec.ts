@@ -67,9 +67,9 @@ describe('Add existing token using search', function () {
       async ({ driver }) => {
         await loginWithoutBalanceValidation(driver);
         const assetListPage = new AssetListPage(driver);
-        await assetListPage.checkTokenAmountIsDisplayed('25 BNB');
+        await assetListPage.check_tokenAmountIsDisplayed('25 BNB');
         await assetListPage.importTokenBySearch('BAT');
-        await assetListPage.checkTokenAmountInTokenDetailsModal(
+        await assetListPage.check_tokenAmountInTokenDetailsModal(
           'Basic Attention Token',
           '0 BAT',
         );

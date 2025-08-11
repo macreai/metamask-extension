@@ -18,7 +18,9 @@ class AlertModal {
     await this.driver.clickElementAndWaitToDisappear(this.confirmAlertButton);
   }
 
-  async checkInsufficientBalanceMessageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_insufficientBalanceMessageIsDisplayed(): Promise<void> {
     console.log(
       'Check insufficient balance message is displayed on alert modal',
     );

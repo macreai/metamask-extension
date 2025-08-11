@@ -33,9 +33,9 @@ describe('Name lookup', function () {
         // Navigate to the extension home page and validate the recipient address in the send flow
         await switchToNetworkFromSendFlow(driver, 'Ethereum');
         await homePage.startSendFlow();
-        await sendTokenPage.checkPageIsLoaded();
+        await sendTokenPage.check_pageIsLoaded();
         await sendTokenPage.fillRecipient('metamask.domain');
-        await sendTokenPage.checkEnsAddressResolution(
+        await sendTokenPage.check_ensAddressResolution(
           'metamask.domain',
           '0xc0ffe...54979',
         );

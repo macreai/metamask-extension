@@ -23,7 +23,7 @@ describe('Add Custom RPC', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         await driver.executeScript(`
         var params = [{
@@ -44,30 +44,30 @@ describe('Add Custom RPC', function (this: Suite) {
       `);
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const updateNetworkConfirmation = new UpdateNetworkConfirmation(driver);
-        await updateNetworkConfirmation.checkPageIsLoaded('Ethereum Mainnet');
+        await updateNetworkConfirmation.check_pageIsLoaded('Ethereum Mainnet');
 
         // Check warning messages are displayed
-        await updateNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await updateNetworkConfirmation.check_warningMessageIsDisplayed(
           'According to our record the network name may not correctly match this chain ID.',
         );
-        await updateNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await updateNetworkConfirmation.check_warningMessageIsDisplayed(
           'According to our records the submitted RPC URL value does not match a known provider for this chain ID.',
         );
-        await updateNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await updateNetworkConfirmation.check_warningMessageIsDisplayed(
           'verify the network details',
         );
         await updateNetworkConfirmation.approveUpdateNetwork();
 
         const addRpcProviderDialog = new AddRpcProviderDialog(driver);
-        await addRpcProviderDialog.checkPageIsLoaded('Ethereum Mainnet');
+        await addRpcProviderDialog.check_pageIsLoaded('Ethereum Mainnet');
         await addRpcProviderDialog.approveAddRpcProvider();
 
-        await updateNetworkConfirmation.checkPageIsLoaded('Ethereum Mainnet');
-        await updateNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await updateNetworkConfirmation.check_pageIsLoaded('Ethereum Mainnet');
+        await updateNetworkConfirmation.check_warningMessageIsDisplayed(
           'Chain ID returned by the custom network does not match the submitted chain ID.',
         );
         assert.equal(
-          await updateNetworkConfirmation.checkIsApproveButtonEnabled(),
+          await updateNetworkConfirmation.check_isApproveButtonEnabled(),
           false,
         );
         await updateNetworkConfirmation.cancelUpdateNetwork();
@@ -89,7 +89,7 @@ describe('Add Custom RPC', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
 
         await driver.executeScript(`
         var params = [{
@@ -111,27 +111,27 @@ describe('Add Custom RPC', function (this: Suite) {
 
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const addNetworkConfirmation = new AddNetworkConfirmation(driver);
-        await addNetworkConfirmation.checkPageIsLoaded('Antani');
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_pageIsLoaded('Antani');
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'According to our record the network name may not correctly match this chain ID.',
         );
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'The submitted currency symbol does not match what we expect for this chain ID.',
         );
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'According to our records the submitted RPC URL value does not match a known provider for this chain ID.',
         );
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'verify the network details',
         );
 
         await addNetworkConfirmation.approveAddNetwork(false);
-        await addNetworkConfirmation.checkPageIsLoaded('Antani');
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_pageIsLoaded('Antani');
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'Chain ID returned by the custom network does not match the submitted chain ID.',
         );
         assert.equal(
-          await addNetworkConfirmation.checkIsApproveButtonEnabled(),
+          await addNetworkConfirmation.check_isApproveButtonEnabled(),
           false,
         );
         await addNetworkConfirmation.cancelAddNetwork();
@@ -169,7 +169,7 @@ describe('Add Custom RPC', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await driver.executeScript(`
         var params = [{
           chainId: "${TEST_CHAIN_ID}",
@@ -189,7 +189,7 @@ describe('Add Custom RPC', function (this: Suite) {
       `);
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const addNetworkConfirmation = new AddNetworkConfirmation(driver);
-        await addNetworkConfirmation.checkPageIsLoaded('Antani');
+        await addNetworkConfirmation.check_pageIsLoaded('Antani');
         await addNetworkConfirmation.approveAddNetwork();
       },
     );
@@ -208,7 +208,7 @@ describe('Add Custom RPC', function (this: Suite) {
         await loginWithBalanceValidation(driver);
         const testDapp = new TestDapp(driver);
         await testDapp.openTestDappPage();
-        await testDapp.checkPageIsLoaded();
+        await testDapp.check_pageIsLoaded();
         await driver.executeScript(`
         var params = [{
           chainId: "0x123",
@@ -228,15 +228,15 @@ describe('Add Custom RPC', function (this: Suite) {
       `);
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const addNetworkConfirmation = new AddNetworkConfirmation(driver);
-        await addNetworkConfirmation.checkPageIsLoaded('Antani');
+        await addNetworkConfirmation.check_pageIsLoaded('Antani');
         await addNetworkConfirmation.approveAddNetwork(false);
 
-        await addNetworkConfirmation.checkPageIsLoaded('Antani');
-        await addNetworkConfirmation.checkWarningMessageIsDisplayed(
+        await addNetworkConfirmation.check_pageIsLoaded('Antani');
+        await addNetworkConfirmation.check_warningMessageIsDisplayed(
           'Error while connecting to the custom network.',
         );
         assert.equal(
-          await addNetworkConfirmation.checkIsApproveButtonEnabled(),
+          await addNetworkConfirmation.check_isApproveButtonEnabled(),
           false,
         );
         await addNetworkConfirmation.cancelAddNetwork();

@@ -62,7 +62,9 @@ class NftListPage {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.clickElement(this.actionBarButton);
       await this.driver.waitForSelector(this.importNftButton);
@@ -109,7 +111,9 @@ class NftListPage {
     }
   }
 
-  async checkNftImageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_nftImageIsDisplayed(): Promise<void> {
     console.log('Check that NFT image is displayed in NFT tab on homepage');
     await this.driver.waitForSelector(this.nftIconOnActivityList);
   }
@@ -119,7 +123,9 @@ class NftListPage {
    *
    * @param nftName - The name of the NFT to check for.
    */
-  async checkNftNameIsDisplayed(nftName: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_nftNameIsDisplayed(nftName: string): Promise<void> {
     console.log(
       `Check that NFT item ${nftName} is displayed in NFT tab on homepage`,
     );
@@ -129,26 +135,34 @@ class NftListPage {
     });
   }
 
-  async checkNoNftInfoIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_noNftInfoIsDisplayed(): Promise<void> {
     console.log('Check that no NFT info is displayed on nft tab');
     await this.driver.waitForSelector(this.noNftInfo);
   }
 
-  async checkSuccessImportNftMessageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_successImportNftMessageIsDisplayed(): Promise<void> {
     console.log(
       'Check that success imported NFT message is displayed on homepage',
     );
     await this.driver.waitForSelector(this.successImportNftMessage);
   }
 
-  async checkSuccessRemoveNftMessageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_successRemoveNftMessageIsDisplayed(): Promise<void> {
     console.log(
       'Check that success removed NFT message is displayed on homepage',
     );
     await this.driver.waitForSelector(this.successRemoveNftMessage);
   }
 
-  async checkNumberOfNftsDisplayed(
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_numberOfNftsDisplayed(
     expectedNumberOfNfts: number,
   ): Promise<void> {
     console.log(

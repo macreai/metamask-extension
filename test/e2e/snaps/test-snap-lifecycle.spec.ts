@@ -28,13 +28,13 @@ describe('Test Snap Lifecycle Hooks', function () {
           { withExtraScreen: true },
         );
         // Check installation success
-        await testSnaps.checkInstallationComplete(
+        await testSnaps.check_installationComplete(
           'connectLifeCycleButton',
           'Reconnect to Lifecycle Hooks Snap',
         );
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         // Validate the message result in the dialog
-        await snapInstall.checkMessageResultSpan(
+        await snapInstall.check_messageResultSpan(
           snapInstall.lifeCycleHookMessageElement,
           'The Snap was installed successfully, and the "onInstall" handler was called.',
         );
@@ -51,24 +51,12 @@ describe('Test Snap Lifecycle Hooks', function () {
         title: this.test?.fullTitle(),
       },
       async ({ driver }: { driver: Driver }) => {
-        // Wait for the dialog to trigger. This avoids race conditions where the
-        // dialog may end up queued instead of opened.
-        await driver.wait(async () => {
-          try {
-            // This throws "No client connected to ServerMochaToBackground" if
-            // the dialog is not opened.
-            await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
-            return true;
-          } catch {
-            return false;
-          }
-        });
+        await unlockWallet(driver);
 
-        await unlockWallet(driver, { navigate: false });
+        const snapInstall = new SnapInstall(driver);
 
         // Validate the "onStart" lifecycle hook message.
-        const snapInstall = new SnapInstall(driver);
-        await snapInstall.checkMessageResultSpan(
+        await snapInstall.check_messageResultSpan(
           snapInstall.lifeCycleHookMessageElement,
           'The client was started successfully, and the "onStart" handler was called.',
         );

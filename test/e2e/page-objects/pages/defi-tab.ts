@@ -13,7 +13,9 @@ class DeFiToken {
     this.driver = driver;
   }
 
-  async checkTokenMarketValue(tokenListItemSecondaryValue: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenMarketValue(tokenListItemSecondaryValue: string) {
     console.log(
       'Check if token market value is displayed on token list item',
       tokenListItemSecondaryValue,
@@ -24,7 +26,9 @@ class DeFiToken {
     });
   }
 
-  async checkTokenName(tokenName: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenName(tokenName: string) {
     console.log(
       'Check if token name is displayed on token list item',
       tokenName,
@@ -82,17 +86,23 @@ class DeFiTab {
     });
   }
 
-  async checkErrorMessageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_errorMessageIsDisplayed(): Promise<void> {
     console.log('Check that error message is displayed');
     await this.driver.waitForSelector(this.errorMessage);
   }
 
-  async checkNoPositionsMessageIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_noPositionsMessageIsDisplayed(): Promise<void> {
     console.log('Check that no positions message is displayed');
     await this.driver.waitForSelector(this.noPositionsMessage);
   }
 
-  async checkGroupIconIsDisplayed(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_groupIconIsDisplayed(): Promise<void> {
     console.log('Check that group icon is displayed');
     await this.driver.waitForSelector(this.groupIcon);
   }

@@ -39,11 +39,11 @@ describe('Ledger Hardware', function (this: Suite) {
         // deploy action
         const testDappPage = new TestDappPage(driver);
         await testDappPage.openTestDappPage();
-        await testDappPage.checkPageIsLoaded();
+        await testDappPage.check_pageIsLoaded();
         await testDappPage.clickERC721DeployButton();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const createContractModal = new CreateContractModal(driver);
-        await createContractModal.checkPageIsLoaded();
+        await createContractModal.check_pageIsLoaded();
         await createContractModal.clickConfirm();
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
         await testDappPage.checkERC721TokenAddressesValue(
@@ -62,11 +62,11 @@ describe('Ledger Hardware', function (this: Suite) {
         await homePage.goToNftTab();
         const nftListPage = new NFTListPage(driver);
         // Check that NFT image is displayed in NFT tab on homepagexp
-        await nftListPage.checkNftImageIsDisplayed();
+        await nftListPage.check_nftImageIsDisplayed();
         await homePage.goToActivityList();
         const activityListPage = new ActivityListPage(driver);
-        await activityListPage.checkTransactionActivityByText('Deposit');
-        await activityListPage.checkWaitForTransactionStatus('confirmed');
+        await activityListPage.check_transactionActivityByText('Deposit');
+        await activityListPage.check_waitForTransactionStatus('confirmed');
 
         // approve action
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
@@ -78,10 +78,10 @@ describe('Ledger Hardware', function (this: Suite) {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         await homePage.goToActivityList();
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           'Approve TDN spending cap',
         );
-        await activityListPage.checkWaitForTransactionStatus('confirmed');
+        await activityListPage.check_waitForTransactionStatus('confirmed');
 
         // set approval for all
         await driver.switchToWindowWithTitle(WINDOW_TITLES.TestDApp);
@@ -89,18 +89,18 @@ describe('Ledger Hardware', function (this: Suite) {
         await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
         const setApprovalForAllConfirmation =
           new SetApprovalForAllTransactionConfirmation(driver);
-        await setApprovalForAllConfirmation.checkSetApprovalForAllTitle();
-        await setApprovalForAllConfirmation.checkSetApprovalForAllSubHeading();
+        await setApprovalForAllConfirmation.check_setApprovalForAllTitle();
+        await setApprovalForAllConfirmation.check_setApprovalForAllSubHeading();
         await setApprovalForAllConfirmation.clickScrollToBottomButton();
         await setApprovalForAllConfirmation.clickFooterConfirmButton();
         await driver.switchToWindowWithTitle(
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         await homePage.goToActivityList();
-        await activityListPage.checkTransactionActivityByText(
+        await activityListPage.check_transactionActivityByText(
           'Approve TDN with no spend limit',
         );
-        await activityListPage.checkWaitForTransactionStatus('confirmed');
+        await activityListPage.check_waitForTransactionStatus('confirmed');
       },
     );
   });

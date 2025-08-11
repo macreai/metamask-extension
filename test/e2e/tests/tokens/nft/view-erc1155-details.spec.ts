@@ -39,13 +39,13 @@ describe('View ERC1155 NFT details', function () {
 
         // Check the NFT details are correctly displayed on NFT details page
         const nftDetailsPage = new NFTDetailsPage(driver);
-        await nftDetailsPage.checkPageIsLoaded();
-        await nftDetailsPage.checkNftNameIsDisplayed('Rocks');
-        await nftDetailsPage.checkNftDescriptionIsDisplayed(
+        await nftDetailsPage.check_pageIsLoaded();
+        await nftDetailsPage.check_nftNameIsDisplayed('Rocks');
+        await nftDetailsPage.check_nftDescriptionIsDisplayed(
           'This is a collection of Rock NFTs.',
         );
-        await nftDetailsPage.checkNftImageContainerIsDisplayed();
-        await nftDetailsPage.checkNftDetailsAddressIsDisplayed(
+        await nftDetailsPage.check_nftImageContainerIsDisplayed();
+        await nftDetailsPage.check_nftDetailsAddressIsDisplayed(
           '0x581c3...45947',
         );
       },

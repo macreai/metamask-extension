@@ -62,8 +62,8 @@ describe('MetaMask onboarding ', function () {
         await importSRPOnboardingFlow({ driver });
 
         const onboardingCompletePage = new OnboardingCompletePage(driver);
-        await onboardingCompletePage.checkPageIsLoaded();
-        await onboardingCompletePage.checkWalletReadyMessageIsDisplayed();
+        await onboardingCompletePage.check_pageIsLoaded();
+        await onboardingCompletePage.check_walletReadyMessageIsDisplayed();
         await onboardingCompletePage.navigateToDefaultPrivacySettings();
 
         const onboardingPrivacySettingsPage = new OnboardingPrivacySettingsPage(
@@ -73,17 +73,17 @@ describe('MetaMask onboarding ', function () {
         await onboardingPrivacySettingsPage.toggleAssetsSettings();
         await onboardingPrivacySettingsPage.navigateBackToOnboardingCompletePage();
 
-        await onboardingCompletePage.checkPageIsLoaded();
+        await onboardingCompletePage.check_pageIsLoaded();
         await onboardingCompletePage.completeOnboarding();
 
         // Refresh tokens before asserting to mitigate flakiness
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
-        await homePage.checkExpectedBalanceIsDisplayed();
+        await homePage.check_pageIsLoaded();
+        await homePage.check_expectedBalanceIsDisplayed();
         await homePage.refreshErc20TokenList();
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.headerNavbar.openAccountMenu();
-        await new AccountList(driver).checkPageIsLoaded();
+        await new AccountList(driver).check_pageIsLoaded();
 
         for (const m of mockedEndpoint) {
           const requests = await m.getSeenRequests();
@@ -115,12 +115,12 @@ describe('MetaMask onboarding ', function () {
 
         // Refresh tokens before asserting to mitigate flakiness
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
-        await homePage.checkExpectedBalanceIsDisplayed();
+        await homePage.check_pageIsLoaded();
+        await homePage.check_expectedBalanceIsDisplayed();
         await homePage.refreshErc20TokenList();
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
         await homePage.headerNavbar.openAccountMenu();
-        await new AccountList(driver).checkPageIsLoaded();
+        await new AccountList(driver).check_pageIsLoaded();
 
         // intended delay to allow for network requests to complete
         await driver.delay(1000);

@@ -12,7 +12,6 @@ import {
   isSelectedInternalAccountEth,
   getSelectedInternalAccount,
   getInternalAccounts,
-  getInternalAccountsObject,
 } from './accounts';
 
 const MOCK_STATE: AccountsState = {
@@ -141,14 +140,6 @@ describe('Accounts Selectors', () => {
 
       state.metamask.internalAccounts.selectedAccount = '';
       expect(isSelectedInternalAccountEth(MOCK_STATE)).toBe(false);
-    });
-  });
-
-  describe('getInternalAccountsObject', () => {
-    it('returns the internal accounts object', () => {
-      expect(
-        getInternalAccountsObject(mockState as AccountsState),
-      ).toStrictEqual(mockState.metamask.internalAccounts.accounts);
     });
   });
 });

@@ -43,7 +43,15 @@ class HeaderNavbar {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  async openGlobalNetworksMenu(): Promise<void> {
+    console.log('Open global menu');
+    await this.driver.clickElement(this.threeDotMenuButton);
+    await this.driver.clickElement(this.globalNetworksMenu);
+  }
+
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         this.accountMenuButton,
@@ -81,12 +89,6 @@ class HeaderNavbar {
     console.log('Open account details modal');
     await this.openThreeDotMenu();
     await this.driver.clickElement(this.openAccountDetailsButton);
-  }
-
-  async openGlobalNetworksMenu(): Promise<void> {
-    console.log('Open global menu');
-    await this.driver.clickElement(this.threeDotMenuButton);
-    await this.driver.clickElement(this.globalNetworksMenu);
   }
 
   async openThreeDotMenu(): Promise<void> {
@@ -137,7 +139,9 @@ class HeaderNavbar {
     await this.driver.clickElement(this.notificationsButton);
   }
 
-  async checkNotificationCountInMenuOption(count: number): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_notificationCountInMenuOption(count: number): Promise<void> {
     await this.openThreeDotMenu();
     await this.driver.findElement({
       css: this.notificationCountOption,
@@ -145,7 +149,9 @@ class HeaderNavbar {
     });
   }
 
-  async checkIfNetworkPickerClickable(clickable: boolean): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_ifNetworkPickerClickable(clickable: boolean): Promise<void> {
     console.log('Check whether the network picker is clickable or not');
     assert.equal(
       await (await this.driver.findElement(this.networkPicker)).isEnabled(),
@@ -158,7 +164,9 @@ class HeaderNavbar {
    *
    * @param expectedAddress - The expected address of the account.
    */
-  async checkAccountAddress(expectedAddress: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_accountAddress(expectedAddress: string): Promise<void> {
     console.log(
       `Verify the displayed account address in header is: ${expectedAddress}`,
     );
@@ -173,7 +181,9 @@ class HeaderNavbar {
    *
    * @param expectedLabel - The expected label of the account.
    */
-  async checkAccountLabel(expectedLabel: string): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_accountLabel(expectedLabel: string): Promise<void> {
     console.log(
       `Verify the displayed account label in header is: ${expectedLabel}`,
     );

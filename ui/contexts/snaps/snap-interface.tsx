@@ -111,14 +111,7 @@ export const SnapInterfaceContextProvider: FunctionComponent<
           id: interfaceId,
         },
       },
-    })
-      .then(() => forceUpdateMetamaskState(dispatch))
-      .catch((error) => {
-        console.error(
-          `Failed to handle Snap request to "${snapId}" for event "${event}" with name "${name}":`,
-          error,
-        );
-      });
+    }).then(() => forceUpdateMetamaskState(dispatch));
   };
 
   const updateState = (state: InterfaceState) =>

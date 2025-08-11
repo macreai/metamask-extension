@@ -30,13 +30,13 @@ describe('Permissions Page', function () {
           WINDOW_TITLES.ExtensionInFullScreenView,
         );
         const homepage = new Homepage(driver);
-        await homepage.checkPageIsLoaded();
-        await homepage.checkExpectedBalanceIsDisplayed();
+        await homepage.check_pageIsLoaded();
+        await homepage.check_expectedBalanceIsDisplayed();
         await homepage.headerNavbar.openPermissionsPage();
 
         const permissionListPage = new PermissionListPage(driver);
-        await permissionListPage.checkPageIsLoaded();
-        await permissionListPage.checkConnectedToSite(DAPP_HOST_ADDRESS);
+        await permissionListPage.check_pageIsLoaded();
+        await permissionListPage.check_connectedToSite(DAPP_HOST_ADDRESS);
       },
     );
   });
@@ -57,19 +57,19 @@ describe('Permissions Page', function () {
 
         // go to experimental settings page and toggle request queue
         const settingsPage = new SettingsPage(driver);
-        await settingsPage.checkPageIsLoaded();
+        await settingsPage.check_pageIsLoaded();
         await settingsPage.goToExperimentalSettings();
 
         const experimentalSettings = new ExperimentalSettings(driver);
-        await experimentalSettings.checkPageIsLoaded();
+        await experimentalSettings.check_pageIsLoaded();
         await settingsPage.closeSettingsPage();
 
         // go to homepage and check site permissions
-        await new Homepage(driver).checkPageIsLoaded();
+        await new Homepage(driver).check_pageIsLoaded();
         await headerNavbar.openPermissionsPage();
         const permissionListPage = new PermissionListPage(driver);
-        await permissionListPage.checkPageIsLoaded();
-        await permissionListPage.checkConnectedToSite(DAPP_HOST_ADDRESS);
+        await permissionListPage.check_pageIsLoaded();
+        await permissionListPage.check_connectedToSite(DAPP_HOST_ADDRESS);
       },
     );
   });

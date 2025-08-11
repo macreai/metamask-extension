@@ -21,7 +21,9 @@ class SnapInteractiveDialog {
     this.driver = driver;
   }
 
-  async checkPageIsLoaded(): Promise<void> {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_pageIsLoaded(): Promise<void> {
     try {
       await this.driver.waitForMultipleSelectors([
         selectors.interactiveUITitle,
@@ -94,7 +96,9 @@ class SnapInteractiveDialog {
     await this.driver.clickElement(selectors.exampleCheckbox);
   }
 
-  async checkResult() {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_result() {
     console.log(`Checking that all the selected options appear in the result`);
     await this.driver.waitForSelector({
       text: 'foo bar',

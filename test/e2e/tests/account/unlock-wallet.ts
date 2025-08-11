@@ -26,25 +26,25 @@ async function doPasswordChangeAndLockWallet(
   const headerNavbar = new HeaderNavbar(driver);
   await headerNavbar.openSettingsPage();
   const settingsPage = new SettingsPage(driver);
-  await settingsPage.checkPageIsLoaded();
+  await settingsPage.check_pageIsLoaded();
   await settingsPage.goToPrivacySettings();
 
   const privacySettings = new PrivacySettings(driver);
-  await privacySettings.checkPageIsLoaded();
+  await privacySettings.check_pageIsLoaded();
   await privacySettings.openChangePassword();
 
   const changePasswordPage = new ChangePasswordPage(driver);
-  await changePasswordPage.checkPageIsLoaded();
+  await changePasswordPage.check_pageIsLoaded();
 
   await changePasswordPage.confirmCurrentPassword(currentPassword);
 
   await changePasswordPage.changePassword(newPassword);
   if (isSocialLogin) {
-    await changePasswordPage.checkPasswordChangedWarning();
+    await changePasswordPage.check_passwordChangedWarning();
     await changePasswordPage.confirmChangePasswordWarning();
   }
 
-  await privacySettings.checkPasswordChangeSuccessToastIsDisplayed();
+  await privacySettings.check_passwordChangeSuccessToastIsDisplayed();
 
   await settingsPage.closeSettingsPage();
 
@@ -74,9 +74,9 @@ describe('Unlock wallet - ', function () {
         await homePage.headerNavbar.lockMetaMask();
         const loginPage = new LoginPage(driver);
         await loginPage.loginToHomepage('123456');
-        await loginPage.checkIncorrectPasswordMessageIsDisplayed();
+        await loginPage.check_incorrectPasswordMessageIsDisplayed();
         await loginPage.loginToHomepage();
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
       },
     );
   });
@@ -105,7 +105,7 @@ describe('Unlock wallet - ', function () {
         await onboardingCompletePage.completeOnboarding(isSocialImportFlow);
 
         const homePage = new HomePage(driver);
-        await homePage.checkPageIsLoaded();
+        await homePage.check_pageIsLoaded();
 
         await doPasswordChangeAndLockWallet(
           driver,
@@ -117,8 +117,8 @@ describe('Unlock wallet - ', function () {
         const loginPage = new LoginPage(driver);
         await loginPage.loginToHomepage(WALLET_PASSWORD);
 
-        await homePage.checkPageIsLoaded();
-        await homePage.checkConnectionsRemovedModalIsDisplayed();
+        await homePage.check_pageIsLoaded();
+        await homePage.check_connectionsRemovedModalIsDisplayed();
       },
     );
   });

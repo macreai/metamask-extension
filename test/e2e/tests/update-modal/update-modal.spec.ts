@@ -17,7 +17,7 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsNotPresent();
+        await updateModal.check_pageIsNotPresent();
       },
     );
   });
@@ -40,7 +40,7 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsLoaded();
+        await updateModal.check_pageIsLoaded();
       },
     );
   });
@@ -63,9 +63,9 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsLoaded();
+        await updateModal.check_pageIsLoaded();
         await updateModal.close();
-        await updateModal.checkPageIsNotPresent();
+        await updateModal.check_pageIsNotPresent();
       },
     );
   });
@@ -98,9 +98,11 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsLoaded();
+        await updateModal.check_pageIsLoaded();
         await updateModal.confirm();
-        await driver.switchToWindowWithTitle(WINDOW_TITLES.ExtensionUpdating);
+        await driver.switchToWindowByTitleWithoutSocket(
+          WINDOW_TITLES.ExtensionUpdating,
+        );
       },
     );
   });
@@ -124,7 +126,7 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsNotPresent();
+        await updateModal.check_pageIsNotPresent();
       },
     );
   });
@@ -148,7 +150,7 @@ describe('Update modal', function (this: Suite) {
       async ({ driver }) => {
         await loginWithBalanceValidation(driver);
         const updateModal = new UpdateModal(driver);
-        await updateModal.checkPageIsNotPresent();
+        await updateModal.check_pageIsNotPresent();
       },
     );
   });

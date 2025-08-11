@@ -16,7 +16,9 @@ class TokenList {
     this.driver = driver;
   }
 
-  async checkTokenBalanceWithName(tokenListItemValue: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenBalanceWithName(tokenListItemValue: string) {
     console.log(
       'Check if token balance is displayed on token list item',
       tokenListItemValue,
@@ -27,7 +29,9 @@ class TokenList {
     });
   }
 
-  async checkTokenMarketValue(tokenListItemSecondaryValue: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenMarketValue(tokenListItemSecondaryValue: string) {
     console.log(
       'Check if token market value is displayed on token list item',
       tokenListItemSecondaryValue,
@@ -38,7 +42,9 @@ class TokenList {
     });
   }
 
-  async checkTokenName(tokenName: string) {
+  // TODO: Fix in https://github.com/MetaMask/metamask-extension/issues/31860
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async check_tokenName(tokenName: string) {
     console.log(
       'Check if token name is displayed on token list item',
       tokenName,

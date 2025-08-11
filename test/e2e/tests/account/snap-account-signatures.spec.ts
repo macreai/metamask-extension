@@ -48,16 +48,16 @@ describe('Snap Account Signatures', function (this: Suite) {
             WINDOW_TITLES.ExtensionInFullScreenView,
           );
           const headerNavbar = new HeaderNavbar(driver);
-          await headerNavbar.checkAccountLabel('SSK Account');
+          await headerNavbar.check_accountLabel('SSK Account');
 
           // Navigate to experimental settings and disable redesigned signature.
           await headerNavbar.openSettingsPage();
           const settingsPage = new SettingsPage(driver);
-          await settingsPage.checkPageIsLoaded();
+          await settingsPage.check_pageIsLoaded();
           await settingsPage.goToExperimentalSettings();
 
           const experimentalSettings = new ExperimentalSettings(driver);
-          await experimentalSettings.checkPageIsLoaded();
+          await experimentalSettings.check_pageIsLoaded();
 
           // Connect the SSK account
           const testDapp = new TestDapp(driver);
